@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.stove;
+package com.vomiter.survivorsdelight.compat.firmalife;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.util.FLAdvancements;
@@ -17,8 +17,7 @@ public class StoveTopPotPlace {
     static public InteractionResult place(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit){
         final BlockPos abovePos = pos.above();
         ItemStack stack = player.getItemInHand(hand);
-        if (hit.getDirection() == Direction.UP && level.getBlockState(abovePos).isAir())
-        {
+        if (hit.getDirection() == Direction.UP && level.getBlockState(abovePos).isAir()) {
             level.setBlockAndUpdate(abovePos, FLBlocks.STOVETOP_POT.get().defaultBlockState());
             if (!player.isCreative()) stack.shrink(1);
             if (player instanceof ServerPlayer server)

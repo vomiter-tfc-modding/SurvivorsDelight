@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.cooking_pot;
+package com.vomiter.survivorsdelight.adapter.cooking_pot.fluid;
 
 import vectorwing.farmersdelight.common.block.entity.CookingPotBlockEntity;
 

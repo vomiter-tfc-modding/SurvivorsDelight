@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.vomiter.survivorsdelight.SurvivorsDelight;
-import com.vomiter.survivorsdelight.common.device.skillet.SkilletMaterial;
+import com.vomiter.survivorsdelight.adapter.skillet.SkilletMaterial;
 import com.vomiter.survivorsdelight.util.SDUtils;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;

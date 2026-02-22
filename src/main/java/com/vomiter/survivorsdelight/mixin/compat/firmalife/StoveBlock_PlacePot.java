@@ -1,6 +1,6 @@
 package com.vomiter.survivorsdelight.mixin.compat.firmalife;
 
-import com.vomiter.survivorsdelight.common.device.stove.StoveTopPotPlace;
+import com.vomiter.survivorsdelight.compat.firmalife.StoveTopPotPlace;
 import net.dries007.tfc.common.items.TFCItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -22,8 +22,7 @@ public class StoveBlock_PlacePot {
     @Inject(method = "use", at = @At("HEAD"), cancellable = true, remap = true)
     private void place_pot(
             BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir
-    )
-    {
+    ) {
         ItemStack stack = player.getItemInHand(hand);
         if(!stack.is(TFCItems.POT.get())) return;
         if(!ModList.get().isLoaded("firmalife")) return;

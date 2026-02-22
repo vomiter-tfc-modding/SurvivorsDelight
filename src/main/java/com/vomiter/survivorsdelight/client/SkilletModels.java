@@ -1,6 +1,7 @@
-package com.vomiter.survivorsdelight.common.device.skillet;
+package com.vomiter.survivorsdelight.client;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
+import com.vomiter.survivorsdelight.adapter.skillet.SkilletMaterial;
 import com.vomiter.survivorsdelight.util.SDUtils;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;

@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.food.block;
+package com.vomiter.survivorsdelight.adapter.food_block;
 
 import com.vomiter.survivorsdelight.common.food.trait.SDFoodTraits;
 import com.vomiter.survivorsdelight.data.tags.SDTags;

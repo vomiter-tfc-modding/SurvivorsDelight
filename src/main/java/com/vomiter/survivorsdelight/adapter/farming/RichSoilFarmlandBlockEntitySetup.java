@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.farming;
+package com.vomiter.survivorsdelight.adapter.farming;
 
 import com.vomiter.survivorsdelight.mixin.BlockEntityTypeAccessor;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;

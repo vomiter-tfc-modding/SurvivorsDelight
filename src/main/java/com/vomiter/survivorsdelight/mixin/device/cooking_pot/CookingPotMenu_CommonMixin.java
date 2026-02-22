@@ -1,6 +1,6 @@
 package com.vomiter.survivorsdelight.mixin.device.cooking_pot;
 
-import com.vomiter.survivorsdelight.common.device.cooking_pot.ICookingPotCommonMenu;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.ICookingPotCommonMenu;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

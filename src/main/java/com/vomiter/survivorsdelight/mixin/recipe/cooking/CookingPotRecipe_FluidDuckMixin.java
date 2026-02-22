@@ -1,8 +1,8 @@
 
 package com.vomiter.survivorsdelight.mixin.recipe.cooking;
 
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.IFluidRequiringRecipe;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.wrap.IFluidAccess;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.IFluidRequiringRecipe;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.ICookingPotRecipeFluidAccess;
 import net.dries007.tfc.common.recipes.ingredients.FluidStackIngredient;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -48,7 +48,7 @@ public abstract class CookingPotRecipe_FluidDuckMixin implements IFluidRequiring
     private void sdtfc$appendFluidCheck(RecipeWrapper inv, Level level, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue()) return; // 物品已經不匹配就不檢查了
         if (sdtfc$fluidReq == null || sdtfc$fluidAmount <= 0) return; // 沒定義 fluid 要求
-        if (!(inv instanceof IFluidAccess fa)) {
+        if (!(inv instanceof ICookingPotRecipeFluidAccess fa)) {
             cir.setReturnValue(false);
             return;
         }

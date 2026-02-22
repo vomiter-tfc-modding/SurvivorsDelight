@@ -1,19 +1,15 @@
 package com.vomiter.survivorsdelight.mixin.device.cooking_pot;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import com.vomiter.survivorsdelight.adapter.cooking_pot.bridge.ICookingPotRecipeBridge;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.ICookingPotFluidAccess;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.IFluidRequiringRecipe;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.wrap.CookingPotFluidRecipeWrapper;
-import com.vomiter.survivorsdelight.network.SDNetwork;
-import com.vomiter.survivorsdelight.network.cooking_pot.PotFluidSyncS2CPacket;
-import net.dries007.tfc.common.fluids.FluidHelpers;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.CookingPotFluidHandler;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.CookingPotFluidRecipeWrapper;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.ICookingPotFluidAccess;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.IFluidRequiringRecipe;
 import net.dries007.tfc.common.items.FluidContainerItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -31,7 +26,6 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -55,10 +49,19 @@ For TFC pot recipe bridge, please check CookingPotBlockEntity_PotRecipeBridgeMix
 @Mixin(value = CookingPotBlockEntity.class, remap = false)
 public abstract class CookingPotBlockEntity_FluidHandleMixin extends BlockEntity implements ICookingPotFluidAccess {
     @Shadow private boolean checkNewRecipe;
-
     public CookingPotBlockEntity_FluidHandleMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
+
+    @Override
+    public void sdtfc$setCheckNewRecipe(boolean b) {
+        checkNewRecipe = b;
+    }
+
+    public List<Player> sdtfc$getPlayers(){
+        return sdtfc$players;
+    }
+
 
     // ====== Players To Send Pkt =======
     @Unique private final List<Player> sdtfc$players = new ArrayList<>();
@@ -68,6 +71,7 @@ public abstract class CookingPotBlockEntity_FluidHandleMixin extends BlockEntity
     @Override public void sdtfc$removePlayer(Player player){
         this.sdtfc$players.remove(player);
     }
+
     // ====== Fluid Tank======
     @Unique private final FluidTank sdtfc$fluidTank = new FluidTank(4000) {
         @Override protected void onContentsChanged() { sdtfc$setChangedAndSync(); }
@@ -114,43 +118,7 @@ public abstract class CookingPotBlockEntity_FluidHandleMixin extends BlockEntity
 
     @Unique
     public void sdtfc$updateFluidIOSlots() {
-        assert level != null;
-        var self = (ICookingPotFluidAccess)this;
-        var tank = self.sdtfc$getTank();
-        var inventory = self.sdtfc$getAuxInv();
-        final ItemStack input = self.sdtfc$getAuxInv().getStackInSlot(0);
-        if (!input.isEmpty() && self.sdtfc$getAuxInv().getStackInSlot(1).isEmpty()) //only works when the input is not empty and output is empty
-        {
-            //Basically copied from barrel
-            FluidHelpers.transferBetweenBlockEntityAndItem(input, this, level, worldPosition, (newOriginalStack, newContainerStack) -> {
-                checkNewRecipe = true; //to mimic inventory change
-                if(this instanceof ICookingPotRecipeBridge bridgePot) bridgePot.sdtfc$setCachedBridge(null); //to make it match pot recipe again
-                if (newContainerStack.isEmpty())
-                {
-                    // No new container was produced, so shove the first stack in the output, and clear the input
-                    inventory.setStackInSlot(0, ItemStack.EMPTY);
-                    inventory.setStackInSlot(1, newOriginalStack);
-                }
-                else
-                {
-                    // We produced a new container - this will be the 'filled', so we need to shove *that* in the output
-                    inventory.setStackInSlot(0, newOriginalStack);
-                    inventory.setStackInSlot(1, newContainerStack);
-                }
-                if(level.isClientSide) return;
-
-                sdtfc$players.forEach(player -> {
-                    if(player.distanceToSqr(Vec3.atCenterOf(worldPosition)) >= 64.0) sdtfc$removePlayer(player);
-                    else{
-                        SDNetwork.CHANNEL.send( //send pack to make client redraw the fluid
-                                net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-                                new PotFluidSyncS2CPacket(worldPosition, ForgeRegistries.FLUIDS.getKey(tank.getFluid().getFluid()), tank.getFluidAmount())
-                        );
-
-                    }
-                });
-            });
-        }
+        CookingPotFluidHandler.updateFluidIOSlots((CookingPotBlockEntity) (Object)this);
     }
 
 

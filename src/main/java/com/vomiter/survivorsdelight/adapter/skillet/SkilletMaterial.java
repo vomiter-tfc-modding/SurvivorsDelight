@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.skillet;
+package com.vomiter.survivorsdelight.adapter.skillet;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
 import com.vomiter.survivorsdelight.util.SDUtils;

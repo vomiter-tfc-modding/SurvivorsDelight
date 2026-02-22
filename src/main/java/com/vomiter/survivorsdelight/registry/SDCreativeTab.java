@@ -1,6 +1,6 @@
 package com.vomiter.survivorsdelight.registry;
 
-import com.vomiter.survivorsdelight.common.device.skillet.SkilletMaterial;
+import com.vomiter.survivorsdelight.adapter.skillet.SkilletMaterial;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletItems;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletPartItems;
 import net.minecraft.core.registries.Registries;

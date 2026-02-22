@@ -4,7 +4,7 @@
     "item": "minecraft:bowl"
   },
   "cookingtime": 900,
-  "experience": 15.0,
+  "experience": 3.0,
   "ingredients": [
     {
       "type": "tfc:not_rotten",

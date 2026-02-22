@@ -2,7 +2,7 @@ package com.vomiter.survivorsdelight.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.vomiter.survivorsdelight.SurvivorsDelight;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.SDCookingPotFluidMenu;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.SDCookingPotFluidMenu;
 import com.vomiter.survivorsdelight.network.SDNetwork;
 import com.vomiter.survivorsdelight.network.cooking_pot.ClearCookingPotMealC2SPacket;
 import com.vomiter.survivorsdelight.util.SDUtils;
@@ -94,7 +94,7 @@ public class SDPotFluidScreen extends AbstractContainerScreen<SDCookingPotFluidM
 
     @Override
     protected void slotClicked(@Nullable Slot slot, int mouseX, int mouseY, @NotNull ClickType clickType) {
-        if(slot != null) SurvivorsDelight.LOGGER.info("SLOT NUMBER {}", slot.index);
+        //if(slot != null) SurvivorsDelight.LOGGER.info("SLOT NUMBER {}", slot.index);
         if (slot != null && slot.index == 2 && clickType == ClickType.PICKUP) {
             ItemStack carried = this.getMenu().getCarried();
             if (sdtfc$isWaterBucket(carried)) {

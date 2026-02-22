@@ -1,5 +1,7 @@
 package com.vomiter.survivorsdelight.mixin.farming.farmland;
 
+import com.vomiter.survivorsdelight.SDConfig;
+import com.vomiter.survivorsdelight.common.RichSoilDelayedCheck;
 import net.dries007.tfc.common.blockentities.CropBlockEntity;
 import net.dries007.tfc.common.blockentities.FarmlandBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
@@ -44,6 +46,11 @@ public class RichSoilFarmland_AddBlockEntityMixin extends FarmBlock implements E
         var aboveBlockEntity = level.getBlockEntity(pos.above());
         if(aboveBlockEntity instanceof CropBlockEntity)ci.cancel();
         else if(aboveBlockEntity instanceof TickCounterBlockEntity) ci.cancel();
+        else if(!SDConfig.RICH_SOIL_FARMLAND_ALLOW_NON_TFC_CROP){
+            if (RichSoilDelayedCheck.shouldDestroy(level, pos.above())) {
+                level.destroyBlock(pos.above(), true);
+            }
+        }
     }
 
 

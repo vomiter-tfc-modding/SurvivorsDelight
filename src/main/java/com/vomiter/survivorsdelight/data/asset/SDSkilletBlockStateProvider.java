@@ -1,7 +1,7 @@
 package com.vomiter.survivorsdelight.data.asset;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
-import com.vomiter.survivorsdelight.common.device.skillet.SkilletMaterial;
+import com.vomiter.survivorsdelight.adapter.skillet.SkilletMaterial;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletBlocks;
 import com.vomiter.survivorsdelight.util.SDUtils;
 import net.minecraft.core.Direction;

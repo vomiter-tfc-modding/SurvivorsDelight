@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.skillet;
+package com.vomiter.survivorsdelight.adapter.skillet;
 
 import com.vomiter.survivorsdelight.common.food.trait.SDFoodTraits;
 import net.dries007.tfc.common.capabilities.food.FoodTrait;

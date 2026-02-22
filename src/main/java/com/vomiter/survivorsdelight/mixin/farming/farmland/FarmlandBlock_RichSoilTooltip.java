@@ -1,7 +1,7 @@
 package com.vomiter.survivorsdelight.mixin.farming.farmland;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import com.vomiter.survivorsdelight.common.farming.ClimateRangeBuilder;
+import com.vomiter.survivorsdelight.adapter.farming.ClimateRangeBuilder;
 import net.dries007.tfc.common.blocks.soil.FarmlandBlock;
 import net.dries007.tfc.util.climate.ClimateRange;
 import net.minecraft.core.BlockPos;

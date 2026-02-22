@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.skillet.itemcooking;
+package com.vomiter.survivorsdelight.adapter.skillet.skillet_item;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
 import com.vomiter.survivorsdelight.util.SDUtils;

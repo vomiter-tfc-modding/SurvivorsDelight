@@ -3,7 +3,7 @@ package com.vomiter.survivorsdelight.adapter.cooking_pot.bridge;
 
 import com.mojang.authlib.GameProfile;
 import com.vomiter.survivorsdelight.SurvivorsDelight;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.IFluidRequiringRecipe;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.IFluidRequiringRecipe;
 import com.vomiter.survivorsdelight.util.SDUtils;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.blocks.devices.PotBlock;

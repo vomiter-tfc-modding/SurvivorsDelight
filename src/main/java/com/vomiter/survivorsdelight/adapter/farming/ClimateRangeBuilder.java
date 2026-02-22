@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.farming;
+package com.vomiter.survivorsdelight.adapter.farming;
 
 import com.vomiter.survivorsdelight.SDConfig;
 import com.vomiter.survivorsdelight.mixin.farming.farmland.ClimateRangeInvoker;
@@ -13,8 +13,8 @@ public class ClimateRangeBuilder {
         var src   = entry != null ? entry.get() : ClimateRange.NOOP;
 
         var j = new com.google.gson.JsonObject();
-        Integer tempExp = SDConfig.COMMON.richSoilFarmlandTemperatureExpansion.get();
-        Integer hydraExp = SDConfig.COMMON.richSoilFarmlandHydrationExpansion.get();
+        int tempExp = SDConfig.RICH_SOIL_FARMLAND_TEMPERATURE_EXPANSION;
+        int hydraExp = SDConfig.RICH_SOIL_FARMLAND_HYDRATION_EXPANSION;
 
         j.addProperty("min_hydration", Math.max(0, src.getMinHydration(false) - hydraExp));
         j.addProperty("max_hydration", Math.min(100, src.getMaxHydration(false) + hydraExp));

@@ -4,7 +4,7 @@
     "item": "minecraft:bowl"
   },
   "cookingtime": 1200,
-  "experience": 20.0,
+  "experience": 5.0,
   "fluid": {
     "amount": 100,
     "ingredient": {
@@ -31,10 +31,10 @@
       "type": "tfc:not_rotten",
       "ingredient": [
         {
-          "tag": "tfc:foods/vegetables"
+          "tag": "survivorsdelight:fruit_for_cheesecake"
         },
         {
-          "tag": "survivorsdelight:fruit_for_cheesecake"
+          "tag": "tfc:foods/vegetables"
         }
       ]
     },

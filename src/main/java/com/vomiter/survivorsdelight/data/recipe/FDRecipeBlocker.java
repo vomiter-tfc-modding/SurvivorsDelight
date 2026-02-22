@@ -29,7 +29,8 @@ public final class FDRecipeBlocker {
     public static final String FD_NAMESPACE = FarmersDelight.MODID;
 
     private static final List<String> OTHER_BLOCKING_ID = List.of(
-            "canvas"
+            "canvas",
+            "melon_juice"
     );
 
     private static final Ingredient OTHER_BLOCKING_TARGET = Ingredient.of(

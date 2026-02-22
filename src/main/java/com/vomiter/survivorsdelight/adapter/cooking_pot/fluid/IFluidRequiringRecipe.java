@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle;
+package com.vomiter.survivorsdelight.adapter.cooking_pot.fluid;
 
 import net.dries007.tfc.common.recipes.ingredients.FluidStackIngredient;
 import org.jetbrains.annotations.Nullable;

@@ -4,7 +4,7 @@
     "item": "minecraft:bowl"
   },
   "cookingtime": 3600,
-  "experience": 15.0,
+  "experience": 3.0,
   "fluid": {
     "amount": 400,
     "ingredient": {

@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.skillet.itemcooking;
+package com.vomiter.survivorsdelight.adapter.skillet.skillet_item;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;

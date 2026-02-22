@@ -1,10 +1,12 @@
-package com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle;
+package com.vomiter.survivorsdelight.adapter.cooking_pot.fluid;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public interface ICookingPotFluidAccess {
     IFluidTank sdtfc$getTank();
@@ -13,6 +15,8 @@ public interface ICookingPotFluidAccess {
     void sdtfc$updateFluidIOSlots();
     void sdtfc$addPlayer(Player player);
     void sdtfc$removePlayer(Player player);
+    List<Player> sdtfc$getPlayers();
+    void sdtfc$setCheckNewRecipe(boolean b);
 
     default @Nullable IFluidHandler sd$getFluidHandler() {
         IFluidTank tank = sdtfc$getTank();

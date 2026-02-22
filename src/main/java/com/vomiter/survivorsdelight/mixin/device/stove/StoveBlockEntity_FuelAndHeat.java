@@ -1,8 +1,8 @@
 package com.vomiter.survivorsdelight.mixin.device.stove;
 
 import com.vomiter.survivorsdelight.HeatSourceBlockEntity;
-import com.vomiter.survivorsdelight.common.device.stove.IStoveBlockEntity;
-import com.vomiter.survivorsdelight.common.device.stove.StoveOvenCompat;
+import com.vomiter.survivorsdelight.adapter.stove.IStoveBlockEntity;
+import com.vomiter.survivorsdelight.compat.firmalife.StoveOvenCompat;
 import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

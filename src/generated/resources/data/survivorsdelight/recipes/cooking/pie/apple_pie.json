@@ -4,7 +4,7 @@
     "item": "farmersdelight:pie_crust"
   },
   "cookingtime": 1200,
-  "experience": 10.0,
+  "experience": 2.0,
   "ingredients": [
     {
       "type": "tfc:not_rotten",

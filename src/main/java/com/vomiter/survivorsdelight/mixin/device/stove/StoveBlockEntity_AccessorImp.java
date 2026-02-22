@@ -1,6 +1,6 @@
 package com.vomiter.survivorsdelight.mixin.device.stove;
 
-import com.vomiter.survivorsdelight.common.device.stove.IStoveBlockEntity;
+import com.vomiter.survivorsdelight.adapter.stove.IStoveBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntityType;

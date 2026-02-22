@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.skillet;
+package com.vomiter.survivorsdelight.adapter.skillet.skillet_block;
 
 import com.vomiter.survivorsdelight.SDConfig;
 import net.minecraft.core.BlockPos;
@@ -38,6 +38,6 @@ public final class SkilletSlotSizeLimitHandler extends ItemStackHandler {
 
     @Override
     public int getSlotLimit(int slot) {
-        return SDConfig.COMMON.skilletSlotNumber.get();
+        return SDConfig.SKILLET_SLOT_NUMBER;
     }
 }

@@ -1,6 +1,6 @@
 package com.vomiter.survivorsdelight.data.asset;
 
-import com.vomiter.survivorsdelight.common.device.skillet.SkilletMaterial;
+import com.vomiter.survivorsdelight.adapter.skillet.SkilletMaterial;
 import com.vomiter.survivorsdelight.registry.SDBlocks;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletBlocks;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletPartItems;

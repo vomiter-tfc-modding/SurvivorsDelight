@@ -1,6 +1,7 @@
 package com.vomiter.survivorsdelight.mixin.recipe;
 
 import com.google.gson.JsonElement;
+import com.vomiter.survivorsdelight.SurvivorsDelight;
 import com.vomiter.survivorsdelight.data.recipe.FDRecipeBlocker;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -35,12 +36,14 @@ public abstract class RecipeManager_FDFilterMixin {
     @Mutable
     private Map<ResourceLocation, Recipe<?>> byName;
 
+
     @Inject(method = "apply*", at = @At("TAIL"))
     private void sd$filterFdFoodRecipes(Map<ResourceLocation, JsonElement> json,
                                         ResourceManager resourceManager,
                                         ProfilerFiller profiler,
                                         CallbackInfo ci) {
 
+        //SurvivorsDelight.LOGGER.info("Recipe Filter Operated");
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         RegistryAccess access = server != null ? server.registryAccess() : RegistryAccess.EMPTY;
 
@@ -64,6 +67,7 @@ public abstract class RecipeManager_FDFilterMixin {
                     Recipe<?> recipe = e.getValue();
 
                     if (FDRecipeBlocker.shouldBlock(id, recipe, access)) {
+                        //SurvivorsDelight.LOGGER.info("Filtered: {}", id);
                         it.remove();
                         newByName.remove(id);
                     }

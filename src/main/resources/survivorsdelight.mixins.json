@@ -9,6 +9,7 @@
     "InventoryBlockEntityAccessor",
     "compat.almostunified.AlmostUnifiedRuntimeImpl_SDRecipeFilterMixin",
     "compat.firmalife.ClimateStationBlockEntityMixin",
+    "compat.firmalife.FLJEIPluginMixin",
     "compat.firmalife.StoveBlock_PlacePot",
     "device.cooking_pot.CookingPotBlock_AddPlayerMixin",
     "device.cooking_pot.CookingPotBlockEntity_Accessor",

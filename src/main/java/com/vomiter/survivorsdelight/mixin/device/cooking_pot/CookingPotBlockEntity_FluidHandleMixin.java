@@ -112,15 +112,8 @@ public abstract class CookingPotBlockEntity_FluidHandleMixin extends BlockEntity
     @Inject(method = "cookingTick", at = @At("HEAD"))
     private static void serverTick(Level level, BlockPos pos, BlockState state, CookingPotBlockEntity cookingPot, CallbackInfo ci) {
         if (level.isClientSide) return;
-        var self = (ICookingPotFluidAccess)cookingPot;
-        self.sdtfc$updateFluidIOSlots();
+        CookingPotFluidHandler.updateFluidIOSlots(cookingPot);
     }
-
-    @Unique
-    public void sdtfc$updateFluidIOSlots() {
-        CookingPotFluidHandler.updateFluidIOSlots((CookingPotBlockEntity) (Object)this);
-    }
-
 
     // ====== Swap recipe wrapper ， let cooking pot process fluid requiring recipe ======
     // ====== Note：Cooking pot can process both cooking pot recipes (with fluid) and bridged TFC pot recipes ======

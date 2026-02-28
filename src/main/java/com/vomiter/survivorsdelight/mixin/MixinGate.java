@@ -1,5 +1,6 @@
 package com.vomiter.survivorsdelight.mixin;
 
+import net.minecraftforge.fml.loading.LoadingModList;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -13,7 +14,17 @@ public final class MixinGate implements IMixinConfigPlugin {
                 || "true".equalsIgnoreCase(System.getProperty("forge.datagen")); // FG 也會帶這旗標
     }
     @Override public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+        if(isDataGen()) return false;
+        if(!mixinClassName.contains("compat")) return true;
+        if(shouldBlockCompatMixin( mixinClassName,"firmalife")) return false;
+        if(shouldBlockCompatMixin( mixinClassName,"rosia")) return false;
+        if(shouldBlockCompatMixin( mixinClassName,"immersiveengineering")) return false;
+
         return !isDataGen(); // datagen 全部不套用 mixin
+    }
+
+    boolean shouldBlockCompatMixin(String mixinClassName, String modId){
+        return mixinClassName.contains(modId) && (LoadingModList.get().getModFileById(modId) == null);
     }
 
     @Override public void onLoad(String mixinPackage) {}

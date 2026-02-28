@@ -10,6 +10,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
@@ -32,6 +33,9 @@ import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 
 import java.util.stream.IntStream;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.network.protocol.Packet;
+
 
 public class SDCabinetBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
     public static final int ROWS = 2;
@@ -335,5 +339,29 @@ public class SDCabinetBlockEntity extends RandomizableContainerBlockEntity imple
             return out;
         }
 
+    }
+
+    @Override
+    public @NotNull CompoundTag getUpdateTag() {
+        // 這份 NBT 會被塞進 chunk packet 給 client
+        return this.saveWithoutMetadata();
+    }
+
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        // 這是「單點更新」封包（setChanged + sendBlockUpdated 時會用到）
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public void handleUpdateTag(@NotNull CompoundTag tag) {
+        // client 收到 chunk packet 時走這裡
+        this.load(tag);
+    }
+
+    @Override
+    public void onDataPacket(net.minecraft.network.Connection net, ClientboundBlockEntityDataPacket pkt) {
+        // client 收到單點更新封包時走這裡
+        if(pkt.getTag() != null) this.load(pkt.getTag());
     }
 }

@@ -20,7 +20,6 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Unique;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 
 import javax.annotation.Nullable;
@@ -36,16 +35,11 @@ public class SDCabinetBlock extends CabinetBlock {
         return ((BlockEntityType<?>) SDBlockEntityTypes.SD_CABINET.get()).create(pos, state);
     }
 
-    @Unique
-    private boolean sdtfc$checkCanTreat(Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand){
-        return CabinetAdapters.checkCanTreat(level, pos, player, hand);
-    }
-
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         BlockEntity be = level.getBlockEntity(pos);
         if (!(be instanceof SDCabinetBlockEntity cabinet)) return InteractionResult.PASS;
-        if(sdtfc$checkCanTreat(level, pos, player, hand)) {
+        if(CabinetAdapters.checkCanTreat(level, pos, player, hand)) {
             cabinet.setTreated(true);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }

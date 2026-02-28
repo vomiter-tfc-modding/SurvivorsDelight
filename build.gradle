@@ -61,6 +61,8 @@ dependencies {
     implementation fg.deobf("curse.maven:my-nethers-delight-1003673:6529919")
 
     compileOnly fg.deobf("curse.maven:almost-unified-633823:5517426")
+    compileOnly fg.deobf("curse.maven:tfc-ie-crossover-830886:7400855")
+    compileOnly fg.deobf("curse.maven:immersive-engineering-231951:6206989")
 }
 
 

@@ -10,6 +10,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
 import vectorwing.farmersdelight.common.block.entity.CookingPotBlockEntity;
 
+import java.util.List;
+
 public class CookingPotFluidHandler {
     public static void updateFluidIOSlots(CookingPotBlockEntity pot){
         var self = (ICookingPotFluidAccess)pot;
@@ -37,14 +39,13 @@ public class CookingPotFluidHandler {
                 }
                 if(pot.getLevel().isClientSide) return;
 
-                self.sdtfc$getPlayers().forEach(player -> {
+                List.copyOf(self.sdtfc$getPlayers()).forEach(player -> {
                     if(player.distanceToSqr(Vec3.atCenterOf(pot.getBlockPos())) >= 64.0) self.sdtfc$removePlayer(player);
                     else{
                         SDNetwork.CHANNEL.send( //send pack to make client redraw the fluid
                                 net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
                                 new PotFluidSyncS2CPacket(pot.getBlockPos(), ForgeRegistries.FLUIDS.getKey(tank.getFluid().getFluid()), tank.getFluidAmount())
                         );
-
                     }
                 });
             });

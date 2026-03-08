@@ -11,8 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class StoveOvenCompat {
     public static void ovenHeating(Level level, BlockPos pos, BlockState state, IStoveBlockEntity stove){
-        var self = (IStoveBlockEntity)stove;
-        assert self != null;
+        assert stove != null;
         var above = level.getBlockEntity(pos.above());
         if(above instanceof ApplianceBlockEntity ovenTop){
             ovenTop.getCapability(Capabilities.ITEM).ifPresent(inventory -> {

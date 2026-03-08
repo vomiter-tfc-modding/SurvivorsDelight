@@ -1,10 +1,7 @@
 package com.vomiter.survivorsdelight.common.food.block;
 
 import com.vomiter.survivorsdelight.compat.firmalife.FLCompatHelpers;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodHandler;
-import net.dries007.tfc.common.capabilities.food.FoodTrait;
-import net.dries007.tfc.common.capabilities.food.IFood;
+import net.dries007.tfc.common.capabilities.food.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.ModList;
 
@@ -17,10 +14,9 @@ public final class DecayFoodTransfer {
      * - traits (replace)
      * - dynamic food data (replace)
      * - optional Firmalife trait stripping
-     *
      * Returns dst for chaining.
      */
-    public static ItemStack copyFoodState(ItemStack src, ItemStack dst, boolean stripFirmalifeShelvedTraits) {
+    public static ItemStack copyFoodState(ItemStack src, ItemStack dst, boolean stripFirmalifeShelvedTraits, float factor) {
         IFood srcFood = FoodCapability.get(src);
         IFood dstFood = FoodCapability.get(dst);
         if (srcFood == null || dstFood == null) return dst;
@@ -41,9 +37,30 @@ public final class DecayFoodTransfer {
 
         // dynamic food data: replace
         if (dstFood instanceof FoodHandler.Dynamic dynamic) {
-            dynamic.setFood(srcFood.getData());
+            dynamic.setFood(scaleNutrients(srcFood.getData(), factor));
         }
 
         return dst;
+    }
+
+    public static ItemStack copyFoodState(ItemStack src, ItemStack dst, boolean stripFirmalifeShelvedTraits) {
+        return copyFoodState(src, dst, stripFirmalifeShelvedTraits, 1);
+    }
+
+
+    private static FoodData scaleNutrients(FoodData src, float factor) {
+        factor = Math.max(0.0f, factor);
+
+        return new FoodData(
+                src.hunger(),
+                src.water(),
+                src.saturation(),
+                src.grain() * factor,
+                src.fruit() * factor,
+                src.vegetables() * factor,
+                src.protein() * factor,
+                src.dairy() * factor,
+                src.decayModifier()
+        );
     }
 }

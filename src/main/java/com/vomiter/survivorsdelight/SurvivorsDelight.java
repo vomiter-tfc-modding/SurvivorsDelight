@@ -1,6 +1,7 @@
 package com.vomiter.survivorsdelight;
 
 import com.mojang.logging.LogUtils;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.CookingPotExtraNutrientRules;
 import com.vomiter.survivorsdelight.client.ClientForgeEventHandler;
 import com.vomiter.survivorsdelight.client.SaladPredicates;
 import com.vomiter.survivorsdelight.client.SandwichPredicates;
@@ -70,6 +71,7 @@ public class SurvivorsDelight {
                     Items.GLASS_BOTTLE,
                     (stack -> stack.is(TFCItems.SILICA_GLASS_BOTTLE.get()))
             );
+            CookingPotExtraNutrientRules.bootstrap();
         });
     }
 

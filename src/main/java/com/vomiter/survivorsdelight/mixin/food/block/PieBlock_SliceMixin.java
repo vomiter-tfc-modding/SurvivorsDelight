@@ -2,6 +2,7 @@ package com.vomiter.survivorsdelight.mixin.food.block;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.datafixers.util.Pair;
+import com.vomiter.survivorsdelight.SDConfig;
 import com.vomiter.survivorsdelight.common.food.block.DecayFoodTransfer;
 import com.vomiter.survivorsdelight.common.food.block.DecayingPieBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -30,6 +31,9 @@ import vectorwing.farmersdelight.common.utility.ItemUtils;
 public abstract class PieBlock_SliceMixin{
 
     @Shadow public abstract ItemStack getPieSliceItem();
+
+    @Shadow
+    public abstract int getMaxBites();
 
     @Inject(method = "cutSlice", at = @At(value = "INVOKE", target = "Lvectorwing/farmersdelight/common/utility/ItemUtils;spawnItemEntity(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;DDDDDD)V"), cancellable = true)
     private void sdtfc$cutDecaySlice(Level level, BlockPos pos, BlockState state, Player player, CallbackInfoReturnable<InteractionResult> cir){
@@ -75,7 +79,11 @@ public abstract class PieBlock_SliceMixin{
 
 
     @Unique
-    private static ItemStack sdtfc$applyFoodFromDecay(DecayingPieBlockEntity decay, ItemStack slice) {
-        return DecayFoodTransfer.copyFoodState(decay.getStack(), slice, true);
+    private ItemStack sdtfc$applyFoodFromDecay(DecayingPieBlockEntity decay, ItemStack slice) {
+        float factor;
+        if (SDConfig.REBALANCING_FEAST) factor = 1f / (float) getMaxBites();
+        else factor = 1f;
+
+        return DecayFoodTransfer.copyFoodState(decay.getStack(), slice, true, factor);
     }
 }

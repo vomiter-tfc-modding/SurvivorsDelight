@@ -3,6 +3,7 @@ package com.vomiter.survivorsdelight.mixin.food.block;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.vomiter.survivorsdelight.SDConfig;
 import com.vomiter.survivorsdelight.common.food.block.DecayFoodTransfer;
 import com.vomiter.survivorsdelight.common.food.block.DecayingFeastBlockEntity;
 import net.dries007.tfc.common.blocks.TFCBlocks;
@@ -29,6 +30,9 @@ import java.util.function.Supplier;
 @Mixin(value = FeastBlock.class, remap = false)
 public abstract class FeastBlock_ServingMixin extends Block {
     @Shadow @Final public Supplier<Item> servingItem;
+
+    @Shadow
+    public abstract int getMaxServings();
 
     public FeastBlock_ServingMixin(Properties p_49795_) {
         super(p_49795_);
@@ -66,7 +70,10 @@ public abstract class FeastBlock_ServingMixin extends Block {
         if (!(blockEntity instanceof DecayingFeastBlockEntity decayingFeastBlockEntity)) return serving;
 
         ItemStack src = decayingFeastBlockEntity.getStack();
-        DecayFoodTransfer.copyFoodState(src, serving, true);
+        float factor;
+        if (SDConfig.REBALANCING_FEAST) factor = 1f / (float) getMaxServings();
+        else factor = 1f;
+        DecayFoodTransfer.copyFoodState(src, serving, true, factor);
 
         if (player.getItemInHand(hand).is(TFCBlocks.CERAMIC_BOWL.get().asItem())) {
             CompoundTag tag = serving.getOrCreateTag();

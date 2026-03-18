@@ -25,6 +25,7 @@ public class SDConfig {
     public static boolean RICH_SOIL_FARMLAND_ALLOW_NON_TFC_CROP;
     public static double RICH_SOIL_RANDOM_MUSHROOM_CHANCE;
     public static double RICH_SOIL_RANDOM_MUSHROOM_BROWN_CHANCE;
+    public static boolean REBALANCING_FEAST;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -44,6 +45,8 @@ public class SDConfig {
         public final ForgeConfigSpec.BooleanValue richSoilFarmlandAllowNonTFCCrop;
         public final ForgeConfigSpec.DoubleValue richSoilRandomMushroomChance;
         public final ForgeConfigSpec.DoubleValue richSoilRandomMushroomBrownChance;
+        public final ForgeConfigSpec.BooleanValue rebalancingFeast;
+
 
         public Common(ForgeConfigSpec.Builder builder) {
             builder.push("general");
@@ -84,6 +87,11 @@ public class SDConfig {
                     .comment("Chance (0~1) that the spawned mushroom is a brown mushroom. (Otherwise red mushroom)")
                     .defineInRange("richSoilRandomMushroomBrownChance", 0.1D, 0.0D, 1.0D);
 
+            rebalancingFeast = builder
+                    .comment("If set true, feast servings give nutrients divided by its total serving count.")
+                    .define("rebalancingFeast", true);
+
+
             builder.pop();
         }
     }
@@ -101,6 +109,8 @@ public class SDConfig {
         RICH_SOIL_FARMLAND_HYDRATION_EXPANSION = COMMON.richSoilFarmlandHydrationExpansion.get();
         RICH_SOIL_RANDOM_MUSHROOM_CHANCE = COMMON.richSoilRandomMushroomChance.get();
         RICH_SOIL_RANDOM_MUSHROOM_BROWN_CHANCE = COMMON.richSoilRandomMushroomBrownChance.get();
+
+        REBALANCING_FEAST = COMMON.rebalancingFeast.get();
     }
 
     @SubscribeEvent

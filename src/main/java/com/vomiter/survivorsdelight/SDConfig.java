@@ -88,8 +88,8 @@ public class SDConfig {
                     .defineInRange("richSoilRandomMushroomBrownChance", 0.1D, 0.0D, 1.0D);
 
             rebalancingFeast = builder
-                    .comment("If set true, feast servings give nutrients divided by its total serving count.")
-                    .define("rebalancingFeast", true);
+                    .comment("If set true, feast servings give nutrients divided by its total serving count. (Experimental)")
+                    .define("rebalancingFeast", false);
 
 
             builder.pop();

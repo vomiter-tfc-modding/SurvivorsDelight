@@ -125,5 +125,7 @@ public class SDTags {
         }
 
         public static TagKey<Fluid> COOKING_OILS = create("cooking_oils");
+        public static TagKey<Fluid> TFC_MILKS = TagKey.create(Registries.FLUID, SDUtils.RLUtils.build("tfc", "milks"));
+
     }
 }

@@ -2,10 +2,7 @@ package com.vomiter.survivorsdelight.registry.recipe;
 
 import com.google.gson.JsonObject;
 import com.vomiter.survivorsdelight.registry.SDRecipeSerializers;
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodData;
-import net.dries007.tfc.common.capabilities.food.FoodHandler;
-import net.dries007.tfc.common.capabilities.food.Nutrient;
+import net.dries007.tfc.common.capabilities.food.*;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -37,6 +34,12 @@ public class NutrientShapedRecipe implements CraftingRecipe {
     }
 
     @Override public boolean matches(@NotNull CraftingContainer inv, @NotNull Level level) {
+        boolean anyRot = inv.getItems().stream().anyMatch(item -> {
+            IFood food = FoodCapability.get(item);
+            if(food == null) return false;
+            return food.isRotten();
+        });
+        if(anyRot) return false;
         return vanilla.matches(inv, level);
     }
 

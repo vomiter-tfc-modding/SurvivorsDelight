@@ -22,9 +22,6 @@ import java.util.*;
 public final class CookingPotCookingHandler {
     private static final int INPUT_SLOT_COUNT = 6;
     private static final float DEFAULT_DECAY = 4.5f;
-    private static final TagKey<Fluid> MILKS_TAG =
-            TagKey.create(Registries.FLUID, SDUtils.RLUtils.build("tfc", "milks"));
-
     private CookingPotCookingHandler() {
     }
 

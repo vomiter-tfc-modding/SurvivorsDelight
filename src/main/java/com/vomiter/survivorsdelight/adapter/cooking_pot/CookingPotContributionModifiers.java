@@ -99,8 +99,20 @@ public final class CookingPotContributionModifiers {
                             (level, stack, nutrient, data, current, context) -> {
                                 if(nutrient == Nutrient.PROTEIN) return current * 1.5f;
                                 if(nutrient == Nutrient.VEGETABLES) return current * 2;
+                                if(nutrient == Nutrient.FRUIT) return current * 2;
                                 if(nutrient == Nutrient.GRAIN) return current * 2;
                                 return current;
+                            }
+                    )
+            );
+            register(
+                    id("feast_bonus"),
+                    0,
+                    new SimpleModifier(
+                            (level, stack, nutrient, data, context) -> context.outputPreview().is(SDTags.ItemTags.FEAST_BLOCKS),
+                            (level, stack, nutrient, data, current, context) ->{
+                                if(current == 0) return 0;
+                                return (float) Math.max(current, 1.6);
                             }
                     )
             );
@@ -113,7 +125,7 @@ public final class CookingPotContributionModifiers {
                         (level, stack, nutrient, data, context) ->
                                 context.fluidIs(SDTags.FluidTags.TFC_MILKS),
                         (level, stack, nutrient, data, current, context) ->
-                                nutrient == Nutrient.DAIRY ? current + 2 : current
+                                nutrient == Nutrient.DAIRY ? current + 1f / context.foodIngredientCount() : current
                 )
         );
 

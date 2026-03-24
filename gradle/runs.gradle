@@ -1,0 +1,43 @@
+minecraft {
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'info'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.debug.export', 'true'
+        }
+
+        client {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            mods {
+                "${mod_id}" { source sourceSets.main }
+            }
+        }
+
+        server {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            args '--nogui'
+            mods { "${mod_id}" { source sourceSets.main } }
+        }
+
+        gameTestServer {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            mods { "${mod_id}" { source sourceSets.main } }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'mixin.env.disable',        'true'
+            property 'mixin.env.ignoreRequired', 'true'
+            property 'mixin.env.disableRefMap',  'true'
+
+            args '--mod', mod_id,
+                    '--all',
+                    '--output', file('src/generated/resources/'),
+                    '--existing', file('src/main/resources/')
+
+            mods { "${mod_id}" { source sourceSets.main } }
+        }
+    }
+}

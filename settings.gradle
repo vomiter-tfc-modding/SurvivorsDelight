@@ -1,31 +1,29 @@
 pluginManagement {
+    def vomiterPluginVersion = "0.2.0"
     repositories {
         gradlePluginPortal()
-        mavenCentral()
-        maven { url = "https://maven.neoforged.net/releases" } // 關鍵：ModDevGradle 解析常靠這個
-        maven { url = "https://repo.spongepowered.org/maven" }  // mixin 相關（保險）
+
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/vomiter-scp-zh/gradle-plugins")
+
+            credentials {
+                username = providers.gradleProperty("gpr.user").orNull
+                password = providers.gradleProperty("gpr.key").orNull
+            }
+
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+    plugins {
+        id "com.vomiter.neoforge-base" version vomiterPluginVersion
+        id "com.vomiter.dev-runtime" version vomiterPluginVersion
+        id "com.vomiter.langmerge" version vomiterPluginVersion
     }
 }
 
 plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.9.0'
 }
-
-rootProject.name = "SurvivorsMonorepo1211"
-
-// 例：你要把 SD Neo 放在 /survivorsdelight-neoforge
-include("dev")
-project(":dev").projectDir = file("dev")
-
-
-include("sd-neo")
-project(":sd-neo").projectDir = file("projects/survivors-delight-neo")
-include("srsoil-neo")
-project(":srsoil-neo").projectDir = file("projects/survivors-richsoils-neo")
-include("heart-neo")
-project(":heart-neo").projectDir = file("projects/tfc-heart-nourishment")
-
-
-// 之後你可以繼續 include 其他模組：
-// include("sa-neo")
-// project(":sa-neo").projectDir = file("survivorsabilities-neoforge")

@@ -1,194 +1,39 @@
-subprojects {
-    apply plugin: "java-library"
-    group = "com.vomiter"
-
-    repositories {
-        mavenCentral()
-        maven { url = "https://maven.neoforged.net/releases" }
-        maven { url = "https://repo.spongepowered.org/maven" }
-        maven { url = "https://maven.blamejared.com" } // JEI
-        maven {
-            url "https://cursemaven.com"
-            content { includeGroup "curse.maven" }
-        }
-    }
-
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(21)
-        }
-    }
-
-    tasks.withType(JavaCompile).configureEach {
-        options.encoding = "UTF-8"
-    }
-}
-
-tasks.named("wrapper", Wrapper).configure {
-    distributionType = Wrapper.DistributionType.BIN
-}
-
-/*
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.107'
+    id 'net.neoforged.moddev' version '2.0.120'
     id 'idea'
-
-    id 'com.vomiter.langmerge'
+    id 'com.vomiter.neoforge-base'
 }
 
-langMerge {
+vomiterNeoForge {
     modId = mod_id
+    // 你不需要改 expandTargets，因為 plugin 預設已對齊 META-INF/neoforge.mods.toml
 }
 
 tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
+
 version = mod_version
 group = mod_group_id
-
-repositories {
-    maven {
-        url "https://cursemaven.com"
-        content { includeGroup "curse.maven" }
-    }
-    maven { url = "https://maven.blamejared.com" }       // JEI
-    maven { url = "https://maven.neoforged.net/releases"} //（可選）
-}
-
-dependencies {
-
-    implementation "curse.maven:terrafirmacraft-302973:7476548" //18
-    //implementation "curse.maven:terrafirmacraft-302973:7452541"//17 => BREAKING
-    //implementation "curse.maven:terrafirmacraft-302973:7343990" //16
-    //implementation "curse.maven:terrafirmacraft-302973:7328217" //10
-    implementation "curse.maven:patchouli-306770:6842247"
-    implementation "curse.maven:farmers-delight-398521:6917256"
-    implementation "curse.maven:survivors-abilities-1354890:7218876"
-
-    implementation "curse.maven:firmalife-453394:7448866"
-    compileOnly "curse.maven:jade-324717:6853386"
-    runtimeOnly "curse.maven:jade-324717:6853386"
-
-    // JEI
-    compileOnly "mezz.jei:jei-1.21.1-common-api:${jei_version}"
-    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:${jei_version}"
-    runtimeOnly  "mezz.jei:jei-1.21.1-neoforge:${jei_version}"
-}
-
 
 base {
     archivesName = mod_id
 }
 
-// 1.21.1 → Java 21
+// Mojang ships Java 21 to end users in 1.21.1, so mods should target Java 21.
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-neoForge {
-    version = project.neo_version
+apply from: 'gradle/neo-forge-runs.gradle'
+apply from: 'gradle/tfc-dep.gradle'
 
-    parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
-    }
-
-    // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
-
-    runs {
-        client {
-            client()
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-            systemProperty 'mixin.env.remapRefMap', 'true'
-            systemProperty 'mixin.debug.verbose', 'true'
-            systemProperty 'mixin.debug.export', 'true'
-        }
-
-        server {
-            server()
-            programArgument '--nogui'
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-            systemProperty 'mixin.env.remapRefMap', 'true'
-            systemProperty 'mixin.debug.verbose', 'true'
-            systemProperty 'mixin.debug.export', 'true'
-        }
-
-        gameTestServer {
-            type = "gameTestServer"
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        }
-
-        data {
-            data()
-            programArguments.addAll '--mod', project.mod_id, '--all',
-                    '--output', file('src/generated/resources/').getAbsolutePath(),
-                    '--existing', file('src/main/resources/').getAbsolutePath()
-
-            // 有些帶 mixin 的專案跑 datagen 會卡 required
-            systemProperty 'mixin.env.ignoreRequired', 'true'
-            systemProperty 'mixin.env.remapRefMap', 'true'
-            systemProperty 'mixin.debug.verbose', 'true'
-            systemProperty 'mixin.debug.export', 'true'
-        }
-
-        configureEach {
-            systemProperty 'forge.logging.markers', 'REGISTRIES'
-            logLevel = org.slf4j.event.Level.DEBUG
-
-            gameDirectory = project.file('run')
-        }
-    }
-
-    mods {
-        "${mod_id}" {
-            sourceSet(sourceSets.main)
-        }
-    }
+dependencies {
+    implementation "curse.maven:neurolib-1484243:7798811"
 }
 
-sourceSets {
-    main {
-        resources {
-            // 讓 IDE & 編譯都看得到 datagen 產物
-            srcDir 'src/generated/resources'
-            // 統一把 assets/<modid>/lang/*.json 從「預設資源」裡排掉
-            // 讓 LangMergePlugin 來決定要放哪一份 lang
-            exclude "assets/${mod_id}/lang/*.json"
-        }
-    }
-}
-
-// 建立一個「可選的執行期」相依（不外發）
-configurations {
-    runtimeClasspath.extendsFrom localRuntime
-}
-
-var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
-    var replaceProperties = [
-            minecraft_version       : minecraft_version,
-            minecraft_version_range : minecraft_version_range,
-            neo_version             : neo_version,
-            loader_version_range    : loader_version_range,
-            mod_id                  : mod_id,
-            mod_name                : mod_name,
-            mod_license             : mod_license,
-            mod_version             : mod_version,
-            mod_authors             : mod_authors,
-            mod_description         : mod_description
-    ]
-    inputs.properties replaceProperties
-    expand replaceProperties
-    from "src/main/templates"
-    into "build/generated/sources/modMetadata"
-}
-sourceSets.main.resources.srcDir generateModMetadata
-neoForge.ideSyncTask generateModMetadata
-
-tasks.processResources {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-}
-
+// Example configuration to allow publishing using the maven-publish plugin
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
@@ -196,19 +41,8 @@ publishing {
         }
     }
     repositories {
-        maven { url "file://${project.projectDir}/repo" }
+        maven {
+            url "file://${project.projectDir}/repo"
+        }
     }
 }
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-}
-
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
-    }
-}
-
- */

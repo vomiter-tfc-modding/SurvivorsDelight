@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/lectern/kapok"
+    }
+  ],
+  "result": [
+    {
+      "count": 10,
+      "item": "tfc:wood/lumber/kapok"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

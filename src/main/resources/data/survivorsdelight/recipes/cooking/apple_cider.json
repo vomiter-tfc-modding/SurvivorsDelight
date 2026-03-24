@@ -1,0 +1,29 @@
+{
+  "type": "farmersdelight:cooking",
+  "recipe_book_tab": "drinks",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "forge:fruits/apple"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "forge:fruits/apple"
+      }
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:apple_cider",
+    "modifiers": [
+      "tfc:copy_food"
+    ]
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

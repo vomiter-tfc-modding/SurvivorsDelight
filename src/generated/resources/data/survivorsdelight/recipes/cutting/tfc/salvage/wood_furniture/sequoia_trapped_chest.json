@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/trapped_chest/sequoia"
+    }
+  ],
+  "result": [
+    {
+      "count": 8,
+      "item": "tfc:wood/lumber/sequoia"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

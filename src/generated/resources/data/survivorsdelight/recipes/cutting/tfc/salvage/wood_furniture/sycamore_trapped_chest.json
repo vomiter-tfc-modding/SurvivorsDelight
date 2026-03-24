@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/trapped_chest/sycamore"
+    }
+  ],
+  "result": [
+    {
+      "count": 8,
+      "item": "tfc:wood/lumber/sycamore"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

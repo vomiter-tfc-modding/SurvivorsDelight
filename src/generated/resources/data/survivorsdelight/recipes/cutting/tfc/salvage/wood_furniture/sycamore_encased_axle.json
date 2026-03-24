@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/encased_axle/sycamore"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "tfc:wood/lumber/sycamore"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

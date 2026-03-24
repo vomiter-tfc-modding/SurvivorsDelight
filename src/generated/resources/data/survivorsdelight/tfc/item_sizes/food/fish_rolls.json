@@ -1,0 +1,12 @@
+{
+  "ingredient": [
+    {
+      "item": "farmersdelight:salmon_roll"
+    },
+    {
+      "item": "farmersdelight:cod_roll"
+    }
+  ],
+  "size": "small",
+  "weight": "light"
+}

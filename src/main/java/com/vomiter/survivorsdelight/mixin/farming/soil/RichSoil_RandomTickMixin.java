@@ -60,10 +60,16 @@ public class RichSoil_RandomTickMixin {
 
     @Unique
     private void add_random_mushroom(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand, CallbackInfo ci){
-        if(level.getBlockState(pos.above()).isAir()){
-            Block mushroom = rand.nextInt(9) == 0 ? Blocks.BROWN_MUSHROOM: Blocks.RED_MUSHROOM;
-            level.setBlockAndUpdate(pos.above(), mushroom.defaultBlockState());
-        }
-    }
+        if (!level.getBlockState(pos.above()).isAir()) return;
 
+        // 1) overall chance to spawn a mushroom
+        if (rand.nextDouble() > SDConfig.RICH_SOIL_RANDOM_MUSHROOM_CHANCE) return;
+
+        // 2) brown vs red
+        Block mushroom = (rand.nextDouble() <= SDConfig.RICH_SOIL_RANDOM_MUSHROOM_BROWN_CHANCE)
+                ? Blocks.BROWN_MUSHROOM
+                : Blocks.RED_MUSHROOM;
+
+        level.setBlockAndUpdate(pos.above(), mushroom.defaultBlockState());
+    }
 }

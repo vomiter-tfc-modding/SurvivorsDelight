@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/white_cedar_tool_rack"
+    }
+  ],
+  "result": [
+    {
+      "count": 6,
+      "item": "tfc:wood/lumber/white_cedar"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

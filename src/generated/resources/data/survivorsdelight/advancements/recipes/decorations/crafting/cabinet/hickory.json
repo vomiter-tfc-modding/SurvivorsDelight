@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_hickory_lumber": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tfc:wood/lumber/hickory"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_hickory_trapdoor": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tfc:wood/planks/hickory_trapdoor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "survivorsdelight:crafting/cabinet/hickory"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_hickory_lumber",
+      "has_hickory_trapdoor",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "survivorsdelight:crafting/cabinet/hickory"
+    ]
+  },
+  "sends_telemetry_event": false
+}

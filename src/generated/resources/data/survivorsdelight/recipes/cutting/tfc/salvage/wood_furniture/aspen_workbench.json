@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/aspen_workbench"
+    }
+  ],
+  "result": [
+    {
+      "count": 16,
+      "item": "tfc:wood/lumber/aspen"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

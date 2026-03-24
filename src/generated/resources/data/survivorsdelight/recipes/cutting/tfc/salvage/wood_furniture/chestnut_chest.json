@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/chest/chestnut"
+    }
+  ],
+  "result": [
+    {
+      "count": 8,
+      "item": "tfc:wood/lumber/chestnut"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

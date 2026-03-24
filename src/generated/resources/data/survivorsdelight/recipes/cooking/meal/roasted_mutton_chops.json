@@ -1,0 +1,35 @@
+{
+  "type": "farmersdelight:cooking",
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "cookingtime": 1200,
+  "experience": 3.0,
+  "fluid": {
+    "amount": 100,
+    "ingredient": "tfc:olive_oil"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/mutton"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/tomato"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:foods/grains"
+      }
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:roasted_mutton_chops"
+  }
+}

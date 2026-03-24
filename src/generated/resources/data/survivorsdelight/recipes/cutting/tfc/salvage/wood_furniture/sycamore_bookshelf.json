@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/sycamore_bookshelf"
+    }
+  ],
+  "result": [
+    {
+      "count": 6,
+      "item": "tfc:wood/lumber/sycamore"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

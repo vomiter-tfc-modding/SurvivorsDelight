@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/sequoia_fence"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "tfc:wood/lumber/sequoia"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

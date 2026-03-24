@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -35,7 +36,7 @@ public abstract class PieBlock_SliceMixin{
     @Shadow public abstract ItemStack getPieSliceItem();
 
     @Inject(method = "cutSlice", at = @At(value = "INVOKE", target = "Lvectorwing/farmersdelight/common/utility/ItemUtils;spawnItemEntity(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;DDDDDD)V"), cancellable = true)
-    private void sdtfc$cutDecaySlice(Level level, BlockPos pos, BlockState state, Player player, CallbackInfoReturnable<ItemInteractionResult> cir){
+    private void sdtfc$cutDecaySlice(Level level, BlockPos pos, BlockState state, Player player, Item knife, CallbackInfoReturnable<ItemInteractionResult> cir){
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (!(blockEntity instanceof DecayingPieBlockEntity decay)) return;
         Direction direction = player.getDirection().getOpposite();

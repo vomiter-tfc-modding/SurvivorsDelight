@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "farmersdelight:salmon_slice"
+    },
+    "R": {
+      "item": "tfc:food/cooked_rice"
+    }
+  },
+  "pattern": [
+    "F",
+    "R"
+  ],
+  "result": {
+    "item": "farmersdelight:salmon_roll"
+  },
+  "show_notification": true
+}

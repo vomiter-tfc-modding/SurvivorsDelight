@@ -1,0 +1,11 @@
+{
+  "ingredient": {
+    "item": "farmersdelight:chocolate_pie"
+  },
+  "hunger": 4,
+  "saturation": 6.3,
+  "water": 0.0,
+  "decay_modifier": 1.0,
+  "grain": 2.7,
+  "dairy": 4.0
+}

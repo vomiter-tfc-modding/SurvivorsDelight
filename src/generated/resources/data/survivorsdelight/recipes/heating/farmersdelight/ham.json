@@ -1,0 +1,18 @@
+{
+  "type": "tfc:heating",
+  "ingredient": {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "farmersdelight:ham"
+    }
+  },
+  "result_item": {
+    "modifiers": [
+      "tfc:copy_food"
+    ],
+    "stack": {
+      "item": "farmersdelight:smoked_ham"
+    }
+  },
+  "temperature": 200.0
+}

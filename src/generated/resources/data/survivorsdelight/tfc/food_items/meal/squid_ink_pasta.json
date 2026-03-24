@@ -1,0 +1,12 @@
+{
+  "ingredient": {
+    "item": "farmersdelight:squid_ink_pasta"
+  },
+  "hunger": 4,
+  "saturation": 3.5,
+  "water": 5.0,
+  "decay_modifier": 1.0,
+  "grain": 0.9,
+  "vegetables": 1.8,
+  "protein": 1.3
+}

@@ -1,0 +1,12 @@
+{
+  "ingredient": [
+    {
+      "item": "farmersdelight:dog_food"
+    },
+    {
+      "item": "farmersdelight:horse_feed"
+    }
+  ],
+  "size": "small",
+  "weight": "light"
+}

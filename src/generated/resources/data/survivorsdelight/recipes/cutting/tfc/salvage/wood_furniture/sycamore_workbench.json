@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/sycamore_workbench"
+    }
+  ],
+  "result": [
+    {
+      "count": 16,
+      "item": "tfc:wood/lumber/sycamore"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

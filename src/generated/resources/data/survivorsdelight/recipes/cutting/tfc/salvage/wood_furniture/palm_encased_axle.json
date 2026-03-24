@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/encased_axle/palm"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "tfc:wood/lumber/palm"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

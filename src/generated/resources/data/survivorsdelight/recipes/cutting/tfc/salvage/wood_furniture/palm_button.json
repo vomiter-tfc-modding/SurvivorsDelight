@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/palm_button"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "tfc:wood/lumber/palm"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

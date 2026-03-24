@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/sign/rosewood"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "tfc:wood/lumber/rosewood"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

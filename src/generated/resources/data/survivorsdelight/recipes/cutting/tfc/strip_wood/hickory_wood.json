@@ -1,0 +1,25 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/wood/hickory"
+    }
+  ],
+  "result": [
+    {
+      "item": "tfc:wood/stripped_wood/hickory"
+    },
+    {
+      "item": "farmersdelight:tree_bark"
+    },
+    {
+      "chance": 0.5,
+      "item": "farmersdelight:tree_bark"
+    }
+  ],
+  "sound": "minecraft:item.axe.strip",
+  "tool": {
+    "type": "farmersdelight:tool_action",
+    "action": "axe_strip"
+  }
+}

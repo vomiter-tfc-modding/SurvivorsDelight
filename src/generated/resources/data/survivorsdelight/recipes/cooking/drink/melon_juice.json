@@ -1,0 +1,40 @@
+{
+  "type": "farmersdelight:cooking",
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "cookingtime": 1200,
+  "experience": 2.0,
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/melon_slice"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/melon_slice"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/melon_slice"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/melon_slice"
+      }
+    },
+    {
+      "item": "tfc:powder/salt"
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:melon_juice"
+  }
+}

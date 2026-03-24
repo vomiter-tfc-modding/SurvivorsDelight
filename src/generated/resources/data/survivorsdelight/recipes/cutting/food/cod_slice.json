@@ -1,0 +1,36 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": [
+        {
+          "item": "tfc:food/cod"
+        },
+        {
+          "item": "tfc:food/crappie"
+        },
+        {
+          "item": "tfc:food/largemouth_bass"
+        },
+        {
+          "item": "tfc:food/smallmouth_bass"
+        }
+      ]
+    }
+  ],
+  "result": [
+    {
+      "modifiers": [
+        "tfc:copy_food"
+      ],
+      "stack": {
+        "count": 2,
+        "item": "farmersdelight:cod_slice"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  }
+}

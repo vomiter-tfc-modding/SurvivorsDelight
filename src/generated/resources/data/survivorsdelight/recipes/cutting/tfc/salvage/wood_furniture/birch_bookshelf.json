@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/birch_bookshelf"
+    }
+  ],
+  "result": [
+    {
+      "count": 6,
+      "item": "tfc:wood/lumber/birch"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "ingredient": {
+    "item": "farmersdelight:salmon_roll"
+  },
+  "hunger": 4,
+  "saturation": 2.0,
+  "water": 5.0,
+  "decay_modifier": 1.0,
+  "grain": 1.0,
+  "protein": 0.5
+}

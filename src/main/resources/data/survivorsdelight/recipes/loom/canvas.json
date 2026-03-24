@@ -1,0 +1,14 @@
+{
+  "type": "tfc:loom",
+  "ingredient": {
+    "ingredient": {
+      "item": "farmersdelight:straw"
+    },
+    "count": 4
+  },
+  "result": {
+    "item": "farmersdelight:canvas"
+  },
+  "steps_required": 4,
+  "in_progress_texture": "farmersdelight:block/canvas_rug"
+}

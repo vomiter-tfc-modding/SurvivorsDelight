@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/spruce_bookshelf"
+    }
+  ],
+  "result": [
+    {
+      "count": 6,
+      "item": "tfc:wood/lumber/spruce"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

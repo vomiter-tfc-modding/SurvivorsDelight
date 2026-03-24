@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "survivorsdelight:cabinet",
+  "key": {
+    "L": {
+      "item": "tfc:wood/lumber/aspen"
+    },
+    "T": {
+      "item": "tfc:wood/planks/aspen_trapdoor"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "T T",
+    "LLL"
+  ],
+  "result": {
+    "item": "survivorsdelight:planks/cabinet/aspen"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,10 @@
+{
+  "ingredient": {
+    "item": "farmersdelight:hot_cocoa"
+  },
+  "hunger": 0,
+  "saturation": 0.0,
+  "water": 10.0,
+  "decay_modifier": 5.0,
+  "dairy": 1.5
+}

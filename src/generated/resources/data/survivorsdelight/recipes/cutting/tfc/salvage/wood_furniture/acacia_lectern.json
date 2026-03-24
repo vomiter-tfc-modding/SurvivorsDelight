@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/lectern/acacia"
+    }
+  ],
+  "result": [
+    {
+      "count": 10,
+      "item": "tfc:wood/lumber/acacia"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

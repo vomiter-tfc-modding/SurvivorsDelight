@@ -1,0 +1,9 @@
+{
+  "values": [
+    "tfc:olive_oil",
+    {
+      "id": "firmalife:soybean_oil",
+      "required": false
+    }
+  ]
+}

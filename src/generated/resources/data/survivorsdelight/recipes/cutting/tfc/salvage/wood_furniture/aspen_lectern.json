@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/lectern/aspen"
+    }
+  ],
+  "result": [
+    {
+      "count": 10,
+      "item": "tfc:wood/lumber/aspen"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/palm_workbench"
+    }
+  ],
+  "result": [
+    {
+      "count": 16,
+      "item": "tfc:wood/lumber/palm"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

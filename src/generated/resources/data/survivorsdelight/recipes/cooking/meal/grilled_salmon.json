@@ -1,0 +1,35 @@
+{
+  "type": "farmersdelight:cooking",
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "cookingtime": 600,
+  "experience": 3.0,
+  "fluid": {
+    "amount": 100,
+    "ingredient": "tfc:olive_oil"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/cooked_salmon"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/onion"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "survivorsdelight:fruit_for_cheesecake"
+      }
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:grilled_salmon"
+  }
+}

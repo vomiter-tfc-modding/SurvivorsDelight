@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "survivorsdelight:cabinet",
+  "key": {
+    "L": {
+      "item": "tfc:wood/lumber/douglas_fir"
+    },
+    "T": {
+      "item": "tfc:wood/planks/douglas_fir_trapdoor"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "T T",
+    "LLL"
+  ],
+  "result": {
+    "item": "survivorsdelight:planks/cabinet/douglas_fir"
+  },
+  "show_notification": true
+}

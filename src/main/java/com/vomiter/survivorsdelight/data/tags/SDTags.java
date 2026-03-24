@@ -41,6 +41,7 @@ public class SDTags {
             );
         }
         public static TagKey<Fluid> COOKING_OILS = create("cooking_oils");
+        public static TagKey<Fluid> TFC_MILKS = create("milks");
     }
 
     public static class BlockTags{

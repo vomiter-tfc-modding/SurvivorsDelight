@@ -30,7 +30,9 @@ apply from: 'gradle/neo-forge-runs.gradle'
 apply from: 'gradle/tfc-dep.gradle'
 
 dependencies {
-    implementation "curse.maven:neurolib-1484243:7798811"
+    implementation "curse.maven:firmalife-453394:7442721"
+    implementation "curse.maven:jade-324717:7545219"
+    implementation "curse.maven:jei-238222:7420587"
 }
 
 // Example configuration to allow publishing using the maven-publish plugin

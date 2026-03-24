@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bone"
+    },
+    "M": {
+      "tag": "survivorsdelight:meats_for_shepherds_pie"
+    },
+    "R": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "b": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "pattern": [
+    " B ",
+    "MRM",
+    " b "
+  ],
+  "result": {
+    "item": "farmersdelight:dog_food"
+  },
+  "show_notification": true
+}

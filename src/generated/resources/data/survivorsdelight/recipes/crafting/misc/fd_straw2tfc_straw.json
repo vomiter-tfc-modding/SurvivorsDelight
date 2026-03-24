@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "farmersdelight:straw"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "tfc:straw"
+  }
+}

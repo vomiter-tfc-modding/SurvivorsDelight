@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/sewing_table/mangrove"
+    }
+  ],
+  "result": [
+    {
+      "count": 24,
+      "item": "tfc:wood/lumber/mangrove"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/rosewood_loom"
+    }
+  ],
+  "result": [
+    {
+      "count": 7,
+      "item": "tfc:wood/lumber/rosewood"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

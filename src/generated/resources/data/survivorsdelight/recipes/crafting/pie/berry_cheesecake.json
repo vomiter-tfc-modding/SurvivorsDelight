@@ -1,0 +1,25 @@
+{
+  "type": "survivorsdelight:nutrition_crafting",
+  "key": {
+    "C": {
+      "tag": "survivorsdelight:cheese_for_cheesecake"
+    },
+    "F": {
+      "tag": "survivorsdelight:fruit_for_cheesecake"
+    },
+    "P": {
+      "item": "farmersdelight:pie_crust"
+    },
+    "S": {
+      "tag": "tfc:sweetener"
+    }
+  },
+  "pattern": [
+    "FFF",
+    "SCS",
+    "SPS"
+  ],
+  "result": {
+    "item": "farmersdelight:sweet_berry_cheesecake"
+  }
+}

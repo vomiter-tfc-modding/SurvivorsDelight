@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_oak_lumber": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tfc:wood/lumber/oak"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_oak_trapdoor": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tfc:wood/planks/oak_trapdoor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "survivorsdelight:crafting/cabinet/oak"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_oak_lumber",
+      "has_oak_trapdoor",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "survivorsdelight:crafting/cabinet/oak"
+    ]
+  },
+  "sends_telemetry_event": false
+}

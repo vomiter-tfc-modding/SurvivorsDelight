@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_acacia_lumber": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tfc:wood/lumber/acacia"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_acacia_trapdoor": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tfc:wood/planks/acacia_trapdoor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "survivorsdelight:crafting/cabinet/acacia"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_acacia_lumber",
+      "has_acacia_trapdoor",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "survivorsdelight:crafting/cabinet/acacia"
+    ]
+  },
+  "sends_telemetry_event": false
+}

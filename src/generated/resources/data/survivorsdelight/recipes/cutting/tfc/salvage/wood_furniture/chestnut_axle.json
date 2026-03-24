@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/axle/chestnut"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "tfc:wood/lumber/chestnut"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

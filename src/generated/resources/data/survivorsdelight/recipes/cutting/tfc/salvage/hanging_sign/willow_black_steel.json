@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/hanging_sign/black_steel/willow"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "tfc:wood/lumber/willow"
+    },
+    {
+      "chance": 0.5,
+      "item": "tfc:metal/chain/black_steel"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

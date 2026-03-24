@@ -1,0 +1,10 @@
+{
+  "ingredient": {
+    "item": "farmersdelight:bone_broth"
+  },
+  "hunger": 0,
+  "saturation": 0.0,
+  "water": 5.0,
+  "decay_modifier": 0.5,
+  "dairy": 1.0
+}

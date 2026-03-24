@@ -1,0 +1,31 @@
+{
+  "type": "farmersdelight:cooking",
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "cookingtime": 600,
+  "experience": 3.0,
+  "fluid": {
+    "amount": 100,
+    "ingredient": {
+      "tag": "tfc:milks"
+    }
+  },
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/protein_soup"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/pumpkin_chunks"
+      }
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:pumpkin_soup"
+  }
+}

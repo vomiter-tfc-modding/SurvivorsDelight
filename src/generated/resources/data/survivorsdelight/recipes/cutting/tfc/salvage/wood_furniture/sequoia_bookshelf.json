@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/sequoia_bookshelf"
+    }
+  ],
+  "result": [
+    {
+      "count": 6,
+      "item": "tfc:wood/lumber/sequoia"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

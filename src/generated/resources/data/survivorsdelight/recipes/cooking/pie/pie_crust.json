@@ -1,0 +1,32 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 1200,
+  "experience": 2.0,
+  "fluid": {
+    "amount": 200,
+    "ingredient": "tfc:olive_oil"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:foods/dough"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:foods/dough"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "survivorsdelight:pie_crust_dairy"
+      }
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:pie_crust"
+  }
+}

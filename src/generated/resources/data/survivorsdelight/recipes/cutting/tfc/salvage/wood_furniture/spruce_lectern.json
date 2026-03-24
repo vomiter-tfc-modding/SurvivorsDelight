@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/lectern/spruce"
+    }
+  ],
+  "result": [
+    {
+      "count": 10,
+      "item": "tfc:wood/lumber/spruce"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

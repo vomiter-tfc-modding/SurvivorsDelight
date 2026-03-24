@@ -1,0 +1,21 @@
+{
+  "type": "survivorsdelight:nutrition_crafting",
+  "key": {
+    "M": {
+      "tag": "tfc:foods/cooked_meats"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "V": {
+      "tag": "tfc:foods/vegetables"
+    }
+  },
+  "pattern": [
+    "MV",
+    "VS"
+  ],
+  "result": {
+    "item": "farmersdelight:barbecue_stick"
+  }
+}

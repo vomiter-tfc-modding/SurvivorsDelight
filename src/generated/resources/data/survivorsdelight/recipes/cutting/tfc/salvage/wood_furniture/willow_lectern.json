@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/lectern/willow"
+    }
+  ],
+  "result": [
+    {
+      "count": 10,
+      "item": "tfc:wood/lumber/willow"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

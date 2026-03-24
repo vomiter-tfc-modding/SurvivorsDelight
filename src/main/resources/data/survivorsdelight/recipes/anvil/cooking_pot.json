@@ -1,0 +1,15 @@
+{
+  "type": "tfc:anvil",
+  "input": {
+    "tag": "forge:double_sheets/wrought_iron"
+  },
+  "tier": 5,
+  "rules": [
+    "BEND_THIRD_LAST",
+    "HIT_SECOND_LAST",
+    "DRAW_LAST"
+  ],
+  "result": {
+    "item": "farmersdelight:cooking_pot"
+  }
+}

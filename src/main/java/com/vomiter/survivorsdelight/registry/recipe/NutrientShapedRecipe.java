@@ -5,10 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.vomiter.survivorsdelight.registry.SDRecipeSerializers;
 import net.dries007.tfc.common.component.TFCComponents;
-import net.dries007.tfc.common.component.food.FoodCapability;
-import net.dries007.tfc.common.component.food.FoodComponent;
-import net.dries007.tfc.common.component.food.FoodData;
-import net.dries007.tfc.common.component.food.Nutrient;
+import net.dries007.tfc.common.component.food.*;
 import net.dries007.tfc.common.component.item.ItemListComponent;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -41,6 +38,12 @@ public class NutrientShapedRecipe implements CraftingRecipe {
 
     @Override
     public boolean matches(@NotNull CraftingInput input, @NotNull Level level) {
+        boolean anyRot = input.items().stream().anyMatch(item -> {
+            IFood food = FoodCapability.get(item);
+            if(food == null) return false;
+            return food.isRotten();
+        });
+        if(anyRot) return false;
         return vanilla.matches(input, level);
     }
 

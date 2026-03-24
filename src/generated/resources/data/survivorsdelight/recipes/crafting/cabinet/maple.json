@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "survivorsdelight:cabinet",
+  "key": {
+    "L": {
+      "item": "tfc:wood/lumber/maple"
+    },
+    "T": {
+      "item": "tfc:wood/planks/maple_trapdoor"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "T T",
+    "LLL"
+  ],
+  "result": {
+    "item": "survivorsdelight:planks/cabinet/maple"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rotten_flesh": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:rotten_flesh"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "survivorsdelight:crafting/misc/organic_compost"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_rotten_flesh",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "survivorsdelight:crafting/misc/organic_compost"
+    ]
+  },
+  "sends_telemetry_event": false
+}

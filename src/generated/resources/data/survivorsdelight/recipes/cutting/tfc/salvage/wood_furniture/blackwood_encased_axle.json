@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/encased_axle/blackwood"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "tfc:wood/lumber/blackwood"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

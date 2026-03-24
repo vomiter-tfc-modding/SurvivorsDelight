@@ -1,0 +1,12 @@
+{
+  "ingredient": [
+    {
+      "item": "farmersdelight:ham"
+    },
+    {
+      "item": "farmersdelight:smoked_ham"
+    }
+  ],
+  "size": "large",
+  "weight": "medium"
+}

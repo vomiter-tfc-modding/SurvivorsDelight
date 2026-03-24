@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/kapok_workbench"
+    }
+  ],
+  "result": [
+    {
+      "count": 16,
+      "item": "tfc:wood/lumber/kapok"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "ingredient": {
+    "item": "farmersdelight:cooked_salmon_slice"
+  },
+  "hunger": 2,
+  "saturation": 0.5,
+  "water": 0.0,
+  "decay_modifier": 2.3,
+  "protein": 1.0
+}

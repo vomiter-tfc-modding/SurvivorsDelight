@@ -1,0 +1,40 @@
+{
+  "type": "farmersdelight:cooking",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "firmalife"
+    }
+  ],
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "cookingtime": 1200,
+  "experience": 2.0,
+  "fluid": {
+    "amount": 200,
+    "ingredient": {
+      "tag": "tfc:milks"
+    }
+  },
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "survivorsdelight:cocoa_powder"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "survivorsdelight:cocoa_powder"
+      }
+    },
+    {
+      "tag": "tfc:sweetener"
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:hot_cocoa"
+  }
+}

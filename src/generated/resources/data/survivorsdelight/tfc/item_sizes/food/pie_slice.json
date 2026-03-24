@@ -1,0 +1,15 @@
+{
+  "ingredient": [
+    {
+      "item": "farmersdelight:apple_pie_slice"
+    },
+    {
+      "item": "farmersdelight:chocolate_pie_slice"
+    },
+    {
+      "item": "farmersdelight:sweet_berry_cheesecake_slice"
+    }
+  ],
+  "size": "small",
+  "weight": "light"
+}

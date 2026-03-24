@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/ash_trapdoor"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "tfc:wood/lumber/ash"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/hanging_sign/wrought_iron/acacia"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "tfc:wood/lumber/acacia"
+    },
+    {
+      "chance": 0.5,
+      "item": "tfc:metal/chain/wrought_iron"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "type": "farmersdelight:cooking",
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "cookingtime": 1200,
+  "experience": 5.0,
+  "fluid": {
+    "amount": 100,
+    "ingredient": {
+      "tag": "survivorsdelight:cooking_oils"
+    }
+  },
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "survivorsdelight:raw_poultry"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "survivorsdelight:fruit_for_cheesecake"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:foods/vegetables"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:foods/grains"
+      }
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:roast_chicken_block"
+  }
+}

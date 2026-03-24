@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mangrove_lumber": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tfc:wood/lumber/mangrove"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mangrove_trapdoor": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tfc:wood/planks/mangrove_trapdoor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "survivorsdelight:crafting/cabinet/mangrove"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_mangrove_lumber",
+      "has_mangrove_trapdoor",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "survivorsdelight:crafting/cabinet/mangrove"
+    ]
+  },
+  "sends_telemetry_event": false
+}

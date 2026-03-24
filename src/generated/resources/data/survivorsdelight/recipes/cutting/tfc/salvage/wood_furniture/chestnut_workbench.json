@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/chestnut_workbench"
+    }
+  ],
+  "result": [
+    {
+      "count": 16,
+      "item": "tfc:wood/lumber/chestnut"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

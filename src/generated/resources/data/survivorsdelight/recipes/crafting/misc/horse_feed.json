@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "survivorsdelight:apple_for_cider"
+    },
+    "C": {
+      "item": "tfc:food/carrot"
+    },
+    "S": {
+      "item": "tfc:thatch"
+    }
+  },
+  "pattern": [
+    "AC",
+    "SA"
+  ],
+  "result": {
+    "item": "farmersdelight:horse_feed"
+  },
+  "show_notification": true
+}

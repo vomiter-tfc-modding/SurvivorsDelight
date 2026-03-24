@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/ash_tool_rack"
+    }
+  ],
+  "result": [
+    {
+      "count": 6,
+      "item": "tfc:wood/lumber/ash"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

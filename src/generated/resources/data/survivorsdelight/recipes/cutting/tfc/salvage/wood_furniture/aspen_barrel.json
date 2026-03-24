@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/barrel/aspen"
+    }
+  ],
+  "result": [
+    {
+      "count": 7,
+      "item": "tfc:wood/lumber/aspen"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

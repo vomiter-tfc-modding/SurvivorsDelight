@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "survivorsdelight:cabinet",
+  "key": {
+    "L": {
+      "item": "tfc:wood/lumber/chestnut"
+    },
+    "T": {
+      "item": "tfc:wood/planks/chestnut_trapdoor"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "T T",
+    "LLL"
+  ],
+  "result": {
+    "item": "survivorsdelight:planks/cabinet/chestnut"
+  },
+  "show_notification": true
+}

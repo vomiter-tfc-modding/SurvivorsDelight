@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/chest/douglas_fir"
+    }
+  ],
+  "result": [
+    {
+      "count": 8,
+      "item": "tfc:wood/lumber/douglas_fir"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

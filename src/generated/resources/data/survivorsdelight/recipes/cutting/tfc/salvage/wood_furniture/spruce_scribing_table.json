@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/scribing_table/spruce"
+    }
+  ],
+  "result": [
+    {
+      "count": 14,
+      "item": "tfc:wood/lumber/spruce"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

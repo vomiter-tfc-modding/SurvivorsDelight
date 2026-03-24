@@ -52,7 +52,7 @@ public class SDCabinetBlock extends CabinetBlock {
         }
 
         // 嘗試以手上物品進行「木材防腐處理」
-        if (CabinetAdapters.tryTreatWithItem(player, hand, stack)) {
+        if (CabinetAdapters.checkCanTreat(level, pos, player, hand)) {
             cabinet.setTreated(true);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }

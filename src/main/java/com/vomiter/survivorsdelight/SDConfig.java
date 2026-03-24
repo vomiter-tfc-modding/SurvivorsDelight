@@ -38,6 +38,14 @@ public class SDConfig {
 
     // Skillet 煎烤食物 trait 修正值
     public static double TRAIT_SKILLET_COOKED_MODIFIER = 0.8D; // default
+    /*
+     * Runtime cached values (static variables)
+     * Use these fields in gameplay code instead of calling ForgeConfigSpec.Value#get() repeatedly.
+     */
+    public static boolean RICH_SOIL_FARMLAND_ALLOW_NON_TFC_CROP;
+    public static double RICH_SOIL_RANDOM_MUSHROOM_CHANCE;
+    public static double RICH_SOIL_RANDOM_MUSHROOM_BROWN_CHANCE;
+    public static boolean REBALANCING_FEAST;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -46,16 +54,23 @@ public class SDConfig {
     }
 
     public static class Common {
-
         public final ModConfigSpec.IntValue skilletSlotNumber;
         public final ModConfigSpec.IntValue richSoilGrowthBoostTick;
         public final ModConfigSpec.IntValue richSoilFarmlandTemperatureExpansion;
         public final ModConfigSpec.IntValue richSoilFarmlandHydrationExpansion;
         public final ModConfigSpec.DoubleValue traitCabinetStoredModifier;
         public final ModConfigSpec.DoubleValue traitSkilletCookedModifier;
+        public final ModConfigSpec.BooleanValue richSoilFarmlandAllowNonTFCCrop;
+        public final ModConfigSpec.DoubleValue richSoilRandomMushroomChance;
+        public final ModConfigSpec.DoubleValue richSoilRandomMushroomBrownChance;
+        public final ModConfigSpec.BooleanValue rebalancingFeast;
 
         public Common(ModConfigSpec.Builder builder) {
             builder.push("general");
+
+            richSoilFarmlandAllowNonTFCCrop = builder
+                    .comment("If false, crops with no proper crop block entity would be popped off on rich soil farmlands.")
+                    .define("richSoilFarmlandAllowNonTFCCrop", true);
 
             skilletSlotNumber = builder
                     .comment("How many items can be put into skillet block at once.")
@@ -80,6 +95,19 @@ public class SDConfig {
             richSoilFarmlandHydrationExpansion = builder
                     .comment("How many percentile of hydration deviated from usual range is allowed for crops planted on rich soil farmlands to grow.")
                     .defineInRange("richSoilFarmlandHydrationExpansion", 5, 0, 100);
+
+            richSoilRandomMushroomChance = builder
+                    .comment("Chance (0~1) for rich soil random tick to spawn a mushroom on the block above, if it is air.")
+                    .defineInRange("richSoilRandomMushroomChance", 1.0D, 0.0D, 1.0D);
+
+            richSoilRandomMushroomBrownChance = builder
+                    .comment("Chance (0~1) that the spawned mushroom is a brown mushroom. (Otherwise red mushroom)")
+                    .defineInRange("richSoilRandomMushroomBrownChance", 0.1D, 0.0D, 1.0D);
+
+            rebalancingFeast = builder
+                    .comment("If set true, feast servings give nutrients divided by its total serving count. (Experimental)")
+                    .define("rebalancingFeast", false);
+
 
             builder.pop();
         }
@@ -112,8 +140,13 @@ public class SDConfig {
         SKILLET_SLOT_LIMIT = COMMON.skilletSlotNumber.get();
         TRAIT_CABINET_STORED_MODIFIER = COMMON.traitCabinetStoredModifier.get();
         TRAIT_SKILLET_COOKED_MODIFIER = COMMON.traitSkilletCookedModifier.get();
+
         RICH_SOIL_GROWTH_BOOST_TICK = COMMON.richSoilGrowthBoostTick.get();
         RICH_SOIL_FARMLAND_TEMPERATURE_EXPANSION = COMMON.richSoilFarmlandTemperatureExpansion.get();
         RICH_SOIL_FARMLAND_HYDRATION_EXPANSION = COMMON.richSoilFarmlandHydrationExpansion.get();
+        RICH_SOIL_RANDOM_MUSHROOM_CHANCE = COMMON.richSoilRandomMushroomChance.get();
+        RICH_SOIL_RANDOM_MUSHROOM_BROWN_CHANCE = COMMON.richSoilRandomMushroomBrownChance.get();
+
+        REBALANCING_FEAST = COMMON.rebalancingFeast.get();
     }
 }

@@ -1,0 +1,18 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+gradlePlugin {
+    plugins {
+        create("langMerge") {
+            id = "com.vomiter.langmerge"
+            implementationClass = "com.vomiter.gradle.LangMergePlugin"
+        }
+    }
+}

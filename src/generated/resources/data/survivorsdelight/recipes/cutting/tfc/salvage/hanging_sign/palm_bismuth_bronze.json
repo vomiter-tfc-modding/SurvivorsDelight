@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/hanging_sign/bismuth_bronze/palm"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "tfc:wood/lumber/palm"
+    },
+    {
+      "chance": 0.5,
+      "item": "tfc:metal/chain/bismuth_bronze"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

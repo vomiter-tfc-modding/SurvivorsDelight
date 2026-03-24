@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/pine_tool_rack"
+    }
+  ],
+  "result": [
+    {
+      "count": 6,
+      "item": "tfc:wood/lumber/pine"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

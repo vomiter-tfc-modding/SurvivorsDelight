@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/barrel/oak"
+    }
+  ],
+  "result": [
+    {
+      "count": 7,
+      "item": "tfc:wood/lumber/oak"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

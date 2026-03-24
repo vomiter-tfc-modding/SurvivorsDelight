@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/encased_axle/sequoia"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "tfc:wood/lumber/sequoia"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

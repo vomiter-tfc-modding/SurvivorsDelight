@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/lectern/white_cedar"
+    }
+  ],
+  "result": [
+    {
+      "count": 10,
+      "item": "tfc:wood/lumber/white_cedar"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

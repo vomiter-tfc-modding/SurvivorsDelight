@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/planks/pine_door"
+    }
+  ],
+  "result": [
+    {
+      "count": 3,
+      "item": "tfc:wood/lumber/pine"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

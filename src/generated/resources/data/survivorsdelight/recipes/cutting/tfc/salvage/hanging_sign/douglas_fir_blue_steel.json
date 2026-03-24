@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/hanging_sign/blue_steel/douglas_fir"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "tfc:wood/lumber/douglas_fir"
+    },
+    {
+      "chance": 0.5,
+      "item": "tfc:metal/chain/blue_steel"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

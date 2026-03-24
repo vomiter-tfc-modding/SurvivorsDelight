@@ -1,0 +1,10 @@
+{
+  "ingredient": {
+    "item": "farmersdelight:vegetable_noodles"
+  },
+  "hunger": 0,
+  "saturation": 0.0,
+  "water": 0.0,
+  "decay_modifier": 1.0,
+  "type": "dynamic"
+}

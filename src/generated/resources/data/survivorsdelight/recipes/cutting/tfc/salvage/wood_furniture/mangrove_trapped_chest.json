@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "tfc:wood/trapped_chest/mangrove"
+    }
+  ],
+  "result": [
+    {
+      "count": 8,
+      "item": "tfc:wood/lumber/mangrove"
+    }
+  ],
+  "tool": {
+    "tag": "tfc:saws"
+  }
+}

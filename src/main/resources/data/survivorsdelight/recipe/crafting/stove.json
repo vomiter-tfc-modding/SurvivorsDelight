@@ -1,23 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-<<<<<<<< HEAD:src/main/resources/data/survivorsdelight/recipe/crafting/stove.json
-  "group": "survivorsdelight:misc",
-  "pattern": [
-    "BiB",
-    "B B"
-  ],
-========
->>>>>>>> master:src/generated/resources/data/survivorsdelight/recipes/crafting/misc/stove.json
   "key": {
     "B": {
       "item": "minecraft:bricks"
-<<<<<<<< HEAD:src/main/resources/data/survivorsdelight/recipe/crafting/stove.json
-========
     },
     "I": {
       "item": "tfc:wrought_iron_grill"
->>>>>>>> master:src/generated/resources/data/survivorsdelight/recipes/crafting/misc/stove.json
     }
   },
   "pattern": [
@@ -25,12 +14,7 @@
     "B B"
   ],
   "result": {
-<<<<<<<< HEAD:src/main/resources/data/survivorsdelight/recipe/crafting/stove.json
-    "id": "farmersdelight:stove"
-  }
-========
     "item": "farmersdelight:stove"
   },
   "show_notification": true
->>>>>>>> master:src/generated/resources/data/survivorsdelight/recipes/crafting/misc/stove.json
 }

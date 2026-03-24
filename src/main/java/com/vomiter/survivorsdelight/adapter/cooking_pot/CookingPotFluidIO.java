@@ -6,10 +6,13 @@ import com.vomiter.survivorsdelight.network.SDNetwork;
 import com.vomiter.survivorsdelight.network.cooking_pot.PotFluidSyncS2CPayload;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import vectorwing.farmersdelight.common.block.entity.CookingPotBlockEntity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CookingPotFluidIO {
@@ -40,16 +43,17 @@ public class CookingPotFluidIO {
                 }
                 if(level.isClientSide) return;
 
+                List<ServerPlayer> toRemove = new ArrayList<>();
                 fluidAccess.sdtfc$getPlayer().forEach(player -> {
-                    if(player.distanceToSqr(Vec3.atCenterOf(cookingPot.getBlockPos())) >= 64.0) fluidAccess.sdtfc$removePlayer(player);
+                    if(player.distanceToSqr(Vec3.atCenterOf(cookingPot.getBlockPos())) >= 64.0) toRemove.add(player);
                     else{
                         SDNetwork.sendToClient(
                                 player,
                                 new PotFluidSyncS2CPayload(cookingPot.getBlockPos(), Optional.of(BuiltInRegistries.FLUID.getKey(tank.getFluid().getFluid())), tank.getFluidAmount())
                         );
-
                     }
                 });
+                toRemove.forEach(fluidAccess::sdtfc$removePlayer);
             });
         }
     }

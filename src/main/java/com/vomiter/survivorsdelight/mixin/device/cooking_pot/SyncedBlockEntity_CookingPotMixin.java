@@ -1,7 +1,9 @@
 package com.vomiter.survivorsdelight.mixin.device.cooking_pot;
 
+import com.vomiter.survivorsdelight.common.device.cooking_pot.ICookingPotCalcDynamic;
 import com.vomiter.survivorsdelight.common.device.cooking_pot.ICookingPotHasChanged;
 import com.vomiter.survivorsdelight.common.device.cooking_pot.bridge.ICookingPotTFCRecipeBridge;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,11 +27,16 @@ public class SyncedBlockEntity_CookingPotMixin implements ICookingPotHasChanged 
     }
 
     @Inject(method = "inventoryChanged", at = @At("HEAD"))
-    private void setChangedForCookingPot(CallbackInfo ci){
-        var self = (SyncedBlockEntity)(Object)this;
-        if(self instanceof CookingPotBlockEntity cookingPot){
+    private void setChangedForCookingPot(CallbackInfo ci) {
+        var self = (SyncedBlockEntity) (Object) this;
+        if (self instanceof CookingPotBlockEntity cookingPot) {
             sdtfc$setChanged(true);
-            ((ICookingPotTFCRecipeBridge)cookingPot).sdtfc$setBridgeCached(null);
+            if (cookingPot instanceof ICookingPotTFCRecipeBridge bridge) {
+                bridge.sdtfc$setBridgeCached(null);
+            }
+            if (cookingPot instanceof ICookingPotCalcDynamic calcDynamic) {
+                calcDynamic.sdtfc$setCachedDynamic(ItemStack.EMPTY);
+            }
         }
     }
 }

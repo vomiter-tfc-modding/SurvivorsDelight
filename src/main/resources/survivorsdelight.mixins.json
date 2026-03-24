@@ -7,6 +7,8 @@
   "mixins": [
     "BlockEntityTypeAccessor",
     "InventoryBlockEntityAccessor",
+    "ItemAccessor",
+    "ItemPropertiesMixin",
     "compat.firmalife.ClimateStationBlockEntityMixin",
     "compat.firmalife.StoveBlock_PlacePot",
     "debug.IdDispatchCodec_DebugMixin",
@@ -58,7 +60,7 @@
     "heat.source.compat.firmalife.Oven_HSMixin",
     "jei.CookingRecipeCategory_FluidSlotMixin",
     "loot.LivingEntity_HamConvertMixin",
-    "recipe.RecipeManager_FDFilterMixin",
+    "recipe.RecipeManager_FDFilterMixin"
   ],
   "client": [
     "client.CookingPotScreen_ButtonMixin",

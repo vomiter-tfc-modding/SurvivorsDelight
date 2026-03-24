@@ -7,22 +7,43 @@ import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import vectorwing.farmersdelight.common.block.entity.StoveBlockEntity;
 
-public class StoveOvenCompat {
-    public static void ovenHeating(Level level, BlockPos pos, BlockState state, StoveBlockEntity stove){
-        var self = (IStoveBlockEntity)stove;
-        assert self != null;
-        var above = level.getBlockEntity(pos.above());
-        if(above instanceof ApplianceBlockEntity ovenTop) {
-            float temperature = 0;
-            temperature = ((HeatSourceBlockEntity) stove).sdtfc$getTemperature();
-            HeatCapability.provideHeatTo(level, pos.above(), Direction.DOWN, ((HeatSourceBlockEntity) stove).sdtfc$getTemperature());
-        }
+public final class StoveOvenCompat {
+    private StoveOvenCompat() {
     }
 
-    public static void interactionRegister(){
+    public static void ovenHeating(Level level, BlockPos pos, BlockState state, StoveBlockEntity stove) {
+        if (!(stove instanceof IStoveBlockEntity) || !(stove instanceof HeatSourceBlockEntity heatSource)) {
+            return;
+        }
 
+        final BlockEntity above = level.getBlockEntity(pos.above());
+        if (!(above instanceof ApplianceBlockEntity<?> appliance)) {
+            return;
+        }
+
+        boolean hasAnyItem = false;
+        for (int i = 0; i < appliance.getInventory().getSlots(); i++) {
+            if (!appliance.getInventory().getStackInSlot(i).isEmpty()) {
+                hasAnyItem = true;
+                break;
+            }
+        }
+        if (!hasAnyItem) {
+            return;
+        }
+
+        final float temperature = heatSource.sdtfc$getTemperature();
+        if (temperature <= 0f) {
+            return;
+        }
+
+        HeatCapability.provideHeatTo(level, pos.above(), Direction.DOWN, temperature);
+    }
+
+    public static void interactionRegister() {
     }
 }

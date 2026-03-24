@@ -54,12 +54,12 @@ public class SDSkilletItems {
             }
             Item.Properties finalProperties = properties;
             Supplier<Item> ro = ITEMS.register(m.path(), () ->
-                    new SDSkilletItem(SDSkilletBlocks.SKILLETS.get(m).get(), finalProperties, m.isWeapon)
+                    new SDSkilletItem(SDSkilletBlocks.SKILLETS.get(m).get(), finalProperties, m.isWeapon, m.durability)
             );
             SKILLETS.put(m, ro);
             if(m.equals(SkilletMaterial.STEEL)){
                 FARMER = ITEMS.register("skillet/farmer", () ->
-                        new SDSkilletItem(SDSkilletBlocks.FARMER.get(), finalProperties, true)
+                        new SDSkilletItem(SDSkilletBlocks.FARMER.get(), finalProperties, true, m.durability)
                 );
             }
         }

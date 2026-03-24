@@ -13,6 +13,8 @@ import com.vomiter.survivorsdelight.registry.SDRegistries;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletBlocks;
 import com.vomiter.survivorsdelight.data.food.SDFoodAndRecipeGenerator;
 import com.vomiter.survivorsdelight.network.SDNetwork;
+import com.vomiter.survivorsdelight.registry.skillet.SDSkilletItems;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -49,6 +51,11 @@ public class SurvivorsDelight {
 
     private void onCommonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            //debug
+            SDSkilletItems.SKILLETS.values().forEach(ro -> {
+                LOGGER.info("{} max damage = {}",ro.get().getDescriptionId(), ro.get().getMaxDamage(new ItemStack(ro.get())));
+            });
+
         });
     }
 
@@ -59,6 +66,7 @@ public class SurvivorsDelight {
         modBus.addListener(SkilletCookingCap::onRegisterCaps);
         modBus.addListener(SDCookingPotCapabilities::onRegisterCaps);
         modBus.addListener(SDCabinetBlockEntity::onRegisterCapabilities);
+
 
     }
 

@@ -1,9 +1,12 @@
 package com.vomiter.survivorsdelight.common.device.skillet;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
+import com.vomiter.survivorsdelight.mixin.ItemAccessor;
+import com.vomiter.survivorsdelight.registry.ItemPropertyInterface;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletItems;
 import com.vomiter.survivorsdelight.util.SDUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -36,9 +39,14 @@ public class SDSkilletItem extends SkilletItem {
 
     boolean isWeapon;
 
-    public SDSkilletItem(Block block, Properties properties, boolean isWeapon) {
+    public SDSkilletItem(Block block, Properties properties, boolean isWeapon, int durability) {
         super(block, properties);
         this.isWeapon = isWeapon;
+        properties.durability(durability);
+        if(this instanceof ItemAccessor itemAccessor && properties instanceof ItemPropertyInterface ipi){
+            SurvivorsDelight.LOGGER.info("trying to rewrite durability. {}", ipi.sdtfc$getMap().get(DataComponents.MAX_DAMAGE));
+            itemAccessor.setComponents(ipi.sdtfc$getMap());
+        }
     }
 
     public static ResourceLocation getKnockbackUUID(){

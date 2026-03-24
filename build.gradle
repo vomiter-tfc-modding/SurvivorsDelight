@@ -4,6 +4,8 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.120'
     id 'idea'
     id 'com.vomiter.neoforge-base'
+    id 'com.vomiter.langmerge'
+
 }
 
 vomiterNeoForge {
@@ -45,6 +47,14 @@ publishing {
     repositories {
         maven {
             url "file://${project.projectDir}/repo"
+        }
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/generated/resources'
         }
     }
 }

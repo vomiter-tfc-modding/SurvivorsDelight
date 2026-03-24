@@ -3,7 +3,6 @@
   "category": "misc",
   "ingredients": [
     {
-<<<<<<<< HEAD:src/generated/resources/data/survivorsdelight/recipe/crafting/misc/organic_compost.json
       "tag": "tfc:compost_browns/high"
     },
     {
@@ -14,39 +13,18 @@
     },
     {
       "tag": "tfc:compost_greens/high"
-========
-      "tag": "tfc:compost_browns_high"
-    },
-    {
-      "tag": "tfc:compost_browns_high"
-    },
-    {
-      "tag": "tfc:compost_greens_high"
-    },
-    {
-      "tag": "tfc:compost_greens_high"
->>>>>>>> master:src/generated/resources/data/survivorsdelight/recipes/crafting/misc/organic_compost.json
     },
     {
       "tag": "minecraft:dirt"
     },
     {
-<<<<<<<< HEAD:src/generated/resources/data/survivorsdelight/recipe/crafting/misc/organic_compost.json
       "item": "minecraft:rotten_flesh"
     },
     {
-========
->>>>>>>> master:src/generated/resources/data/survivorsdelight/recipes/crafting/misc/organic_compost.json
       "item": "tfc:compost"
     },
     {
       "item": "tfc:rotten_compost"
-<<<<<<<< HEAD:src/generated/resources/data/survivorsdelight/recipe/crafting/misc/organic_compost.json
-========
-    },
-    {
-      "item": "minecraft:rotten_flesh"
->>>>>>>> master:src/generated/resources/data/survivorsdelight/recipes/crafting/misc/organic_compost.json
     }
   ],
   "result": {

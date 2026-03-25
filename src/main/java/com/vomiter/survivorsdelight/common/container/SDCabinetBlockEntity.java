@@ -3,7 +3,6 @@ package com.vomiter.survivorsdelight.common.container;
 import com.vomiter.survivorsdelight.adapter.container.CabinetAdapters;
 import com.vomiter.survivorsdelight.registry.SDBlockEntityTypes;
 import com.vomiter.survivorsdelight.registry.SDContainerTypes;
-import net.dries007.tfc.common.component.food.FoodCapability;
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -279,7 +278,7 @@ public class SDCabinetBlockEntity extends RandomizableContainerBlockEntity imple
 
                 ItemStack existing = getStackInSlot(i);
                 if (!existing.isEmpty()
-                        && FoodCapability.areStacksStackableExceptCreationDate(existing, toInsert)) {
+                        && CabinetAdapters.isFoodStackable(existing, toInsert)) {
 
                     // 記錄修改前數量，方便計算實際移入幾個
                     int before = toInsert.getCount();
@@ -288,14 +287,14 @@ public class SDCabinetBlockEntity extends RandomizableContainerBlockEntity imple
                         // 模擬：用副本計算
                         ItemStack existingCopy = existing.copy();
                         ItemStack toInsertCopy = toInsert.copy();
-                        FoodCapability.mergeItemStacks(existingCopy, toInsertCopy);
+                        CabinetAdapters.foodMerge(existingCopy, toInsertCopy);
                         // 計算在這個槽位能移入多少
                         int moved = before - toInsertCopy.getCount();
                         if (moved > 0) {
                             toInsert.shrink(moved);
                         }
                     } else {
-                        FoodCapability.mergeItemStacks(existing, toInsert);
+                        CabinetAdapters.foodMerge(existing, toInsert);
                         setStackInSlot(i, existing);
                         if (be.level != null && !be.level.isClientSide) {
                             be.setStored(existing);
@@ -320,7 +319,7 @@ public class SDCabinetBlockEntity extends RandomizableContainerBlockEntity imple
                         }
                     } else {
                         // 實際：使用 FoodCapability.mergeItemStacks 讓 creation_date 規則一致
-                        ItemStack newStack = FoodCapability.mergeItemStacks(ItemStack.EMPTY, toInsert);
+                        ItemStack newStack = CabinetAdapters.foodMerge(ItemStack.EMPTY, toInsert);
                         setStackInSlot(i, newStack);
                         if (be.level != null && !be.level.isClientSide) {
                             be.setStored(newStack);

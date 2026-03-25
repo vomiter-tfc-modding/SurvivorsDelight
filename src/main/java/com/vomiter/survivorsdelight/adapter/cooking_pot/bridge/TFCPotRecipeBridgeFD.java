@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.cooking_pot.bridge;
+package com.vomiter.survivorsdelight.adapter.cooking_pot.bridge;
 
 import com.vomiter.survivorsdelight.registry.recipe.SDCookingPotRecipe;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;

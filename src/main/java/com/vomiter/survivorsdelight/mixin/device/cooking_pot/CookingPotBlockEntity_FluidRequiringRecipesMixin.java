@@ -1,10 +1,10 @@
 package com.vomiter.survivorsdelight.mixin.device.cooking_pot;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.ICookingPotCalcDynamic;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.ICookingPotHasChanged;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.ICookingPotFluidAccess;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.wrap.CookingPotFluidRecipeWrapper;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.ICookingPotCalcDynamic;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.ICookingPotHasChanged;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle.ICookingPotFluidAccess;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.wrap.CookingPotFluidRecipeWrapper;
 import com.vomiter.survivorsdelight.registry.recipe.SDCookingPotRecipe;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.minecraft.core.BlockPos;

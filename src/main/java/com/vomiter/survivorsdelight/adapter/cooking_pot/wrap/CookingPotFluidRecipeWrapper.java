@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.cooking_pot.wrap;
+package com.vomiter.survivorsdelight.adapter.cooking_pot.wrap;
 
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.IItemHandler;

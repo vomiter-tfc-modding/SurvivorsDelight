@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.stove;
+package com.vomiter.survivorsdelight.adapter.stove;
 
 import com.vomiter.survivorsdelight.HeatSourceBlockEntity;
 import com.vomiter.survivorsdelight.mixin.device.stove.StoveBlockEntity_Accessor;

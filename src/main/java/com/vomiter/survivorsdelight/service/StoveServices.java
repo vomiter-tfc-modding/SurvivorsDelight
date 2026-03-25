@@ -1,6 +1,6 @@
 package com.vomiter.survivorsdelight.service;
 
-import com.vomiter.survivorsdelight.common.device.stove.IStoveBlockEntity;
+import com.vomiter.survivorsdelight.adapter.stove.IStoveBlockEntity;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.util.data.Fuel;
 import net.minecraft.core.BlockPos;

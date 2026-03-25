@@ -6,7 +6,7 @@ import com.vomiter.survivorsdelight.client.SaladPredicates;
 import com.vomiter.survivorsdelight.client.SandwichPredicates;
 import com.vomiter.survivorsdelight.common.ForgeEventHandler;
 import com.vomiter.survivorsdelight.common.container.SDCabinetBlockEntity;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.SDCookingPotCapabilities;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle.SDCookingPotCapabilities;
 import com.vomiter.survivorsdelight.common.device.skillet.itemcooking.SkilletCookingCap;
 import com.vomiter.survivorsdelight.common.farming.RichSoilFarmlandBlockEntitySetup;
 import com.vomiter.survivorsdelight.registry.SDRegistries;

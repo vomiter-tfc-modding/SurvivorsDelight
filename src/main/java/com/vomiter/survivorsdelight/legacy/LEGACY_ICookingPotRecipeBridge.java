@@ -1,6 +1,6 @@
 package com.vomiter.survivorsdelight.legacy;
 
-import com.vomiter.survivorsdelight.common.device.cooking_pot.bridge.TFCPotRecipeBridgeFD;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.bridge.TFCPotRecipeBridgeFD;
 import net.minecraft.world.item.ItemStack;
 
 public interface LEGACY_ICookingPotRecipeBridge {

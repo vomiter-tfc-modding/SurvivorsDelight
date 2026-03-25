@@ -13,15 +13,40 @@ import net.neoforged.neoforge.items.IItemHandlerModifiable;
 public final class TFCPotInventorySnapshots {
 
     // 離線用的假鍋，放在 (0,0,0) + 預設鍋方塊態，僅用來做 Recipe 匹配/assemble
+
     static final class DetachedPot extends PotBlockEntity {
-        public DetachedPot(Level level) {
+
+        public DetachedPot() {
+            // 用一個不會真的被用到的位置就好，反正不綁 Level
             super(BlockPos.ZERO, TFCBlocks.POT.get().defaultBlockState());
-            setLevel(level);
         }
 
-        // 永遠回 false，避免 PotInventory 的 extractItem 規則在快照上擋到
+        // 不要綁定真正的 Level，避免任何 world/blockstate 檢查
         @Override
-        public boolean hasRecipeStarted() { return false; }
+        public void setLevel(@org.jetbrains.annotations.Nullable Level level) {
+            // 故意 NO-OP，不呼叫 super.setLevel(level)
+        }
+
+        @Override
+        public @org.jetbrains.annotations.Nullable Level getLevel() {
+            // 對 PotInventory / 配方計算而言通常用不到 level，直接回傳 null 即可
+            return null;
+        }
+
+        // 避免有人呼叫 setChanged() 時去碰世界
+        @Override
+        public void setChanged() {
+            // NO-OP：離線快照不需要 markDirty
+        }
+
+        @Override
+        public void updateCachedRecipe(){}
+
+        // 已經保留：快照上永遠視為「尚未開始料理」
+        @Override
+        public boolean hasRecipeStarted() {
+            return false;
+        }
     }
 
     /**
@@ -30,8 +55,8 @@ public final class TFCPotInventorySnapshots {
      * @param fluids 來源流體（會讀第 0 槽）
      * @return 可拿去給 PotRecipe.matches/assemble 使用的 PotInventory
      */
-    public static PotBlockEntity.PotInventory snapshot(Level level, IItemHandler items, IFluidHandler fluids) {
-        DetachedPot pot = new DetachedPot(level);
+    public static PotBlockEntity.PotInventory snapshot(IItemHandler items, IFluidHandler fluids) {
+        DetachedPot pot = new DetachedPot();
         PotBlockEntity.PotInventory inv = new PotBlockEntity.PotInventory(pot); // TFC 鍋會有這個取用器；若沒有，直接 new PotInventory(pot)
 
         // 1) 先清空快照鍋的物品

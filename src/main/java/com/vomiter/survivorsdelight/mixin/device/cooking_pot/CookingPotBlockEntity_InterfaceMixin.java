@@ -1,7 +1,7 @@
 package com.vomiter.survivorsdelight.mixin.device.cooking_pot;
 
-import com.vomiter.survivorsdelight.adapter.cooking_pot.CookingPotFluidIO;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.ICookingPotFluidAccess;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle.CookingPotFluidIO;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle.ICookingPotFluidAccess;
 import net.dries007.tfc.common.items.FluidContainerItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;

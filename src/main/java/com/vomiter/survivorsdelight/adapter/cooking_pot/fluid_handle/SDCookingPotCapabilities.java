@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle;
+package com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
 import com.vomiter.survivorsdelight.util.SDUtils;

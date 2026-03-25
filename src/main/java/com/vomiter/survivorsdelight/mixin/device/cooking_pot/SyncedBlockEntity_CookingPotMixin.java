@@ -1,8 +1,8 @@
 package com.vomiter.survivorsdelight.mixin.device.cooking_pot;
 
-import com.vomiter.survivorsdelight.common.device.cooking_pot.ICookingPotCalcDynamic;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.ICookingPotHasChanged;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.bridge.ICookingPotTFCRecipeBridge;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.ICookingPotCalcDynamic;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.ICookingPotHasChanged;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.bridge.ICookingPotTFCRecipeBridge;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

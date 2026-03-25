@@ -3,7 +3,7 @@ package com.vomiter.survivorsdelight.registry.recipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.wrap.ICookingPotRecipeFluidAccess;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.wrap.ICookingPotRecipeFluidAccess;
 import com.vomiter.survivorsdelight.registry.SDRecipeSerializers;
 import net.dries007.tfc.common.component.TFCComponents;
 import net.dries007.tfc.common.component.food.FoodComponent;

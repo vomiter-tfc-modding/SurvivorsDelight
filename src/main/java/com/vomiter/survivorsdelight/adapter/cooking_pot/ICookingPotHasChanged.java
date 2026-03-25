@@ -1,4 +1,4 @@
-package com.vomiter.survivorsdelight.common.device.cooking_pot;
+package com.vomiter.survivorsdelight.adapter.cooking_pot;
 
 public interface ICookingPotHasChanged {
     boolean sdtfc$getHasChanged();

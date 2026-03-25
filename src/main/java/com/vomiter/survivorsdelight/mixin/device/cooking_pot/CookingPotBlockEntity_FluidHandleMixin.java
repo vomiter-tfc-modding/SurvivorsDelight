@@ -1,8 +1,8 @@
 package com.vomiter.survivorsdelight.mixin.device.cooking_pot;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
-import com.vomiter.survivorsdelight.adapter.cooking_pot.PotFluidPersistence;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.ICookingPotFluidAccess;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle.PotFluidPersistence;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle.ICookingPotFluidAccess;
 import com.vomiter.survivorsdelight.registry.recipe.SDCookingPotRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

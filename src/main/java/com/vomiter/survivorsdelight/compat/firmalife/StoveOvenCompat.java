@@ -2,7 +2,7 @@ package com.vomiter.survivorsdelight.compat.firmalife;
 
 import com.eerussianguy.firmalife.common.blockentities.ApplianceBlockEntity;
 import com.vomiter.survivorsdelight.HeatSourceBlockEntity;
-import com.vomiter.survivorsdelight.common.device.stove.IStoveBlockEntity;
+import com.vomiter.survivorsdelight.adapter.stove.IStoveBlockEntity;
 import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

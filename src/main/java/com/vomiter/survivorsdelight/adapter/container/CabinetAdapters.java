@@ -61,5 +61,11 @@ public class CabinetAdapters {
         return TFCChestBlockEntity.isValid(stack) || stack.getItem() instanceof SkilletItem;
     }
 
+    public static boolean isFoodStackable(ItemStack existing, ItemStack toInsert){
+        return FoodCapability.areStacksStackableExceptCreationDate(existing, toInsert);
+    }
 
+    public static ItemStack foodMerge(ItemStack existing, ItemStack toInsert){
+        return FoodCapability.mergeItemStacks(existing, toInsert);
+    }
 }

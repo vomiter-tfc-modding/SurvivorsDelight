@@ -1,7 +1,7 @@
-package com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle;
+package com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle;
 
 import com.mojang.datafixers.util.Pair;
-import com.vomiter.survivorsdelight.common.device.cooking_pot.ICookingPotCommonMenu;
+import com.vomiter.survivorsdelight.adapter.cooking_pot.ICookingPotCommonMenu;
 import com.vomiter.survivorsdelight.registry.SDContainerTypes;
 import com.vomiter.survivorsdelight.mixin.device.cooking_pot.CookingPotBlockEntity_Accessor;
 import net.minecraft.core.BlockPos;

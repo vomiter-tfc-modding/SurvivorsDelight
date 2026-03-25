@@ -22,6 +22,8 @@ public class ForgeEventHandler {
         bus.addListener(ForgeEventHandler::onFireStart);
         bus.addListener(SkilletCookingCap::onClone);
         bus.addListener(SDSkilletItem.SDSkilletEvents::playSkilletAttackSound);
+        bus.addListener(RichSoilDelayedCheck::onPlayerRightClick_RichSoilFarmGating);
+        bus.addListener(RichSoilDelayedCheck::onServerTick);
     }
 
     public static void onFireStart(StartFireEvent event){

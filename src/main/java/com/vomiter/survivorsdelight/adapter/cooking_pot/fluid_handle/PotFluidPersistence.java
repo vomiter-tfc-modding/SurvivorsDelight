@@ -1,6 +1,5 @@
-package com.vomiter.survivorsdelight.adapter.cooking_pot;
+package com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle;
 
-import com.vomiter.survivorsdelight.common.device.cooking_pot.fluid_handle.ICookingPotFluidAccess;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;

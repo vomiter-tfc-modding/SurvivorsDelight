@@ -36,6 +36,7 @@
     "food.block.FeastBlock_BlockEntityMixin",
     "food.block.FeastBlock_ServingMixin",
     "food.block.PieBlock_BlockEntityMixin",
+    "food.block.PieBlock_SliceLegacyMixin",
     "food.block.PieBlock_SliceMixin",
     "food.effect.ComfortEffect_Mixin",
     "food.effect.FoodValues_TweakEffectMixin",

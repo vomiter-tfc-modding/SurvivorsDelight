@@ -217,6 +217,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     }
 
     private void addSkilletTags(){
+        tag(SDTags.ItemTags.SKILLETS).add(SDSkilletItems.FARMER.get());
         for (SkilletMaterial m : SkilletMaterial.values()){
             var skillet = SDSkilletItems.getKey(m);
             var head = SDSkilletPartItems.HEADS.get(m);

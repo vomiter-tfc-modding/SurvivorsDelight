@@ -111,21 +111,22 @@ public abstract class SkilletItem_TFCHeatMixin {
             }
         }
         IHeat heat = HeatCapability.get(cooking);
-        if (heat != null) HeatCapability.addTemp(heat, temperatureNearby);
-        if (!level.isClientSide) {
-            SDNetwork.CHANNEL.send(
-                    PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-                    new SDNetwork.SkilletProgressionBarS2C(
-                            Math.round(heat.getTemperature() / data.getTargetTemp() * 13)
-                    )
-            );
+        if (heat != null) HeatCapability.addTemp(heat, temperatureNearby);//add temp at both sides
 
+        if (!level.isClientSide()) {
             if (heat == null) {
                 if (!player.addItem(cooking)) player.drop(cooking, false);
                 data.clear();
                 if (player.isUsingItem()) player.stopUsingItem();
                 return;
             }
+
+            SDNetwork.CHANNEL.send(
+                    PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
+                    new SDNetwork.SkilletProgressionBarS2C(
+                            Math.round(heat.getTemperature() / data.getTargetTemp() * 13)
+                    )
+            );
 
             if(heat.getTemperature() < data.getTargetTemp()) return;
 

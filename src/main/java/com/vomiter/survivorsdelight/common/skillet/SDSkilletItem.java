@@ -99,7 +99,7 @@ public class SDSkilletItem extends SkilletItem {
             if (!event.phase.equals(TickEvent.Phase.END)) return;
             Player player = event.player;
             if (player instanceof ServerPlayer serverPlayer){
-                if (!serverPlayer.isUsingItem() || !serverPlayer.getUseItem().is(SDTags.ItemTags.SKILLETS)){
+                if (!serverPlayer.isUsingItem() || !serverPlayer.getUseItem().equals(serverPlayer.getMainHandItem())){
                     if (serverPlayer.getMainHandItem().getItem() instanceof SDSkilletItem sdSkilletItem){
                         sdSkilletItem.returnFood(serverPlayer.getMainHandItem(), player);
                     }

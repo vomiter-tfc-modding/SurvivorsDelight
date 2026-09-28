@@ -1,6 +1,7 @@
 package com.vomiter.survivorsdelight.adapter.cooking_pot.dynamic;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
+import com.vomiter.survivorsdelight.api.cooking.DynamicCookingRules;
 import com.vomiter.survivorsdelight.data.tags.SDTags;
 import com.vomiter.survivorsdelight.util.FoodDataBuilder;
 import com.vomiter.survivorsdelight.util.SDUtils;
@@ -19,13 +20,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import vectorwing.farmersdelight.common.crafting.CookingPotRecipe;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Objects;
+import java.util.Optional;
 
 public class CookingPotDynamicRules {
+    /** @deprecated Use {@link DynamicCookingRules.PotFoodModifier}. */
+    @Deprecated(forRemoval = false)
     @FunctionalInterface
     public interface PotFoodModifier {
         FoodDataBuilder modify(
@@ -34,33 +39,24 @@ public class CookingPotDynamicRules {
         );
     }
 
+    /** @deprecated Use {@link DynamicCookingRules.RuleHolder}. */
+    @Deprecated(forRemoval = false)
     public record RuleHolder(int priority, ResourceLocation id, PotFoodModifier modifier){}
-    static class RuleSorter implements Comparator<RuleHolder>{
-        @Override
-        public int compare(RuleHolder o1, RuleHolder o2) {
-            if (o1.priority < o2.priority) return 1;
-            else if (o1.priority > o2.priority) {
-                return -1;
-            }
-            else return 0;
-        }
-    }
-
-    static final List<RuleHolder> RULES = new ArrayList<>();
-    static boolean bootstrapped = false;
-    static void bootStrap(){
-        if (bootstrapped) return;
-        RULES.sort(new RuleSorter());
-        bootstrapped = true;
-    }
 
     /**
-     * Rules for Addition should have priority of 2000;
-     * Rules for multiplying should have priority of 1000;
-     * Rules for input fluid should have priority of 0;
+     * Compatibility bridge for existing addons. Registration timing, duplicate
+     * IDs and ordering follow the public API.
+     * @deprecated Use {@link DynamicCookingRules#register(DynamicCookingRules.RuleHolder)}.
      */
+    @Deprecated(forRemoval = false)
     public static void register(RuleHolder rule){
-        RULES.add(rule);
+        Objects.requireNonNull(rule, "Rule");
+        DynamicCookingRules.register(rule.id(), rule.priority(),
+                Objects.requireNonNull(rule.modifier(), "Rule modifier")::modify);
+    }
+
+    public static void onLoadComplete(FMLLoadCompleteEvent event) {
+        event.enqueueWork(DynamicCookingRules::freeze);
     }
 
     public static FoodData getBuiltInFoodData(Food food){
@@ -86,8 +82,8 @@ public class CookingPotDynamicRules {
 
     public static void onCommonSetup(FMLCommonSetupEvent event){
         event.enqueueWork(() -> {
-            register(new RuleHolder(
-                    2000,
+            DynamicCookingRules.register(new DynamicCookingRules.RuleHolder(
+                    DynamicCookingRules.PRIORITY_ADDITION,
                     SurvivorsDelight.modLoc("heating"),
                     ((food, context) -> {
                         if(context.phase().equals(DynamicFoodContext.Phase.TOTAL)) return food;
@@ -98,8 +94,8 @@ public class CookingPotDynamicRules {
                     })
             ));
 
-            register(new RuleHolder(
-                    2000,
+            DynamicCookingRules.register(new DynamicCookingRules.RuleHolder(
+                    DynamicCookingRules.PRIORITY_ADDITION,
                     SurvivorsDelight.modLoc("bone"),
                     ((food, context) -> {
                         if(context.phase().equals(DynamicFoodContext.Phase.TOTAL)) return food;
@@ -109,8 +105,8 @@ public class CookingPotDynamicRules {
             ));
 
 
-            register(new RuleHolder(
-                    2000,
+            DynamicCookingRules.register(new DynamicCookingRules.RuleHolder(
+                    DynamicCookingRules.PRIORITY_ADDITION,
                     SurvivorsDelight.modLoc("pasta_and_grains"),
                     ((food, context) -> {
                         if(context.phase().equals(DynamicFoodContext.Phase.TOTAL)) return food;
@@ -123,9 +119,9 @@ public class CookingPotDynamicRules {
                     })
             ));
 
-            register(
-                    new RuleHolder(
-                            1000,
+            DynamicCookingRules.register(
+                    new DynamicCookingRules.RuleHolder(
+                            DynamicCookingRules.PRIORITY_MULTIPLICATION,
                             SurvivorsDelight.modLoc("sweetener"),
                             ((food, context) -> {
                                 if(context.phase().equals(DynamicFoodContext.Phase.TOTAL)) return food;
@@ -135,9 +131,9 @@ public class CookingPotDynamicRules {
                     )
             );
 
-            register(
-                    new RuleHolder(
-                            1000,
+            DynamicCookingRules.register(
+                    new DynamicCookingRules.RuleHolder(
+                            DynamicCookingRules.PRIORITY_MULTIPLICATION,
                             SurvivorsDelight.modLoc("salt"),
                             ((food, context) -> {
                                 if(context.phase().equals(DynamicFoodContext.Phase.TOTAL)) return food;
@@ -147,9 +143,9 @@ public class CookingPotDynamicRules {
                     )
             );
 
-            register(
-                    new RuleHolder(
-                            0,
+            DynamicCookingRules.register(
+                    new DynamicCookingRules.RuleHolder(
+                            DynamicCookingRules.PRIORITY_FLUID,
                             SurvivorsDelight.modLoc("oil"),
                             ((food, context) -> {
                                 if (context.phase().equals(DynamicFoodContext.Phase.INDIVIDUAL)) return food;
@@ -168,9 +164,9 @@ public class CookingPotDynamicRules {
                     )
             );
 
-            register(
-                    new RuleHolder(
-                            0,
+            DynamicCookingRules.register(
+                    new DynamicCookingRules.RuleHolder(
+                            DynamicCookingRules.PRIORITY_FLUID,
                             SurvivorsDelight.modLoc("milk"),
                             ((food, context) -> {
                                 if (context.phase().equals(DynamicFoodContext.Phase.INDIVIDUAL)) return food;

@@ -1,5 +1,7 @@
 # Survivor’s Delight — TFC × FD Compatibility
 
+Developer documentation: [Dynamic cooking rules API](docs/dynamic-cooking-rules-api.md).
+
 Make Farmer’s Delight behave correctly in TerraFirmaCraft worlds. With this mod, FD food block can spoil. Rich soil no longer causes sapling instant growth while being a better farmland variant for crops. You may also have skillets and cabinets that uses TFC metal and woods.
 
 ***

@@ -1,6 +1,7 @@
 package com.vomiter.survivorsdelight.adapter.cooking_pot.dynamic;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
+import com.vomiter.survivorsdelight.api.cooking.DynamicCookingRules;
 import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid.IFluidRequiringRecipe;
 import com.vomiter.survivorsdelight.util.FoodDataBuilder;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
@@ -31,9 +32,6 @@ public class CookingPotCookingHandler {
         var resultFood = FoodCapability.get(resultItem);
         if(!(resultFood instanceof FoodHandler.Dynamic dynamicFood)) return resultItem;
         if (!(recipe instanceof IFluidRequiringRecipe fluidRequiringRecipe)) return resultItem;
-        if (!CookingPotDynamicRules.bootstrapped){
-            CookingPotDynamicRules.bootStrap();
-        }
         List<ItemStack> inputItems = new ArrayList<>();
         for (int i = 0; i < slotNumber; i++) {
             inputItems.add(inventory.getStackInSlot(i).copyWithCount(1));
@@ -42,31 +40,10 @@ public class CookingPotCookingHandler {
         if (!inputFluid.isEmpty()){
             inputFluid.setAmount(fluidRequiringRecipe.sdtfc$getRequiredFluidAmount());
         }
-        var foodBuilder = FoodDataBuilder.from(resultFood.getData());
-        CookingPotDynamicRules.RULES.forEach(ruleHolder -> {
-            inputItems.forEach(inputItem -> {
-                var context = new DynamicFoodContext<>(
-                        inputItems,
-                        inputFluid,
-                        inputItem,
-                        recipe,
-                        recipe.getId(),
-                        DynamicFoodContext.Phase.INDIVIDUAL,
-                        level
-                );
-                ruleHolder.modifier().modify(foodBuilder, context);
-            });
-            var context = new DynamicFoodContext<>(
-                    inputItems,
-                    inputFluid,
-                    resultItem,
-                    recipe,
-                    recipe.getId(),
-                    DynamicFoodContext.Phase.TOTAL,
-                    level
-            );
-            ruleHolder.modifier().modify(foodBuilder, context);
-        });
+        var context = new DynamicFoodContext<>(
+                inputItems, inputFluid, resultItem, recipe, recipe.getId(),
+                DynamicFoodContext.Phase.TOTAL, level);
+        var foodBuilder = DynamicCookingRules.apply(FoodDataBuilder.from(resultFood.getData()), context);
         SurvivorsDelight.LOGGER.info("Cached Nutrients = {}", foodBuilder.nutrients());
 
         var inputFood = new ArrayList<>(inputItems.stream().filter(item -> FoodCapability.get(item) != null).toList());

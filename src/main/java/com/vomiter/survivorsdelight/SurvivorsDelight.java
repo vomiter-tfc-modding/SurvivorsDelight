@@ -105,6 +105,7 @@ public class SurvivorsDelight {
         modBus.addListener((RegisterCapabilitiesEvent e) -> e.register(ISkilletItemCookingData.class));
         ForgeEventHandler.init();
         modBus.addListener(CookingPotDynamicRules::onCommonSetup);
+        modBus.addListener(CookingPotDynamicRules::onLoadComplete);
 
         if (FMLEnvironment.dist == Dist.CLIENT){
             ClientForgeEventHandler.init();

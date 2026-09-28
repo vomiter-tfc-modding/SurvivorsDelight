@@ -7,6 +7,13 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
+/**
+ * Context passed to dynamic cooking rules. In INDIVIDUAL, stack is one input
+ * slot; in TOTAL, stack is the recipe output. Treat lists, stacks and fluids as
+ * read-only. The lists cannot be structurally modified through this context.
+ * Each nonempty input stack has count one and the fluid amount
+ * is the recipe's required amount.
+ */
 public record DynamicFoodContext<R>(
         List<ItemStack> inputs,
         List<FluidStack> inputFluids,
@@ -16,6 +23,11 @@ public record DynamicFoodContext<R>(
         Phase phase,
         Level level
 ) {
+    public DynamicFoodContext {
+        inputs = List.copyOf(inputs);
+        inputFluids = List.copyOf(inputFluids);
+    }
+
     public DynamicFoodContext(
             List<ItemStack> inputs,
             FluidStack inputFluid,

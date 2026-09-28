@@ -2,6 +2,7 @@ package com.vomiter.survivorsdelight.common.skillet;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import com.vomiter.survivorsdelight.adapter.skillet.ISkilletItemCookingData;
 import com.vomiter.survivorsdelight.data.tags.SDTags;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletItems;
 import net.minecraft.client.model.HumanoidModel;
@@ -135,6 +136,9 @@ public class SDSkilletItem extends SkilletItem {
                 player.getInventory().placeItemBackInInventory(cookingStack);
                 tag.remove("Cooking");
                 tag.remove("CookTimeHandheld");
+            }
+            if ((Object)stack instanceof ISkilletItemCookingData data){
+                data.clear();
             }
         }
     }

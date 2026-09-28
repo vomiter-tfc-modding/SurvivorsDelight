@@ -2,10 +2,13 @@ package com.vomiter.survivorsdelight.common.skillet;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import com.vomiter.survivorsdelight.data.tags.SDTags;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletItems;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -26,6 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -90,6 +94,18 @@ public class SDSkilletItem extends SkilletItem {
 
 
     public static class SDSkilletEvents {
+        public static void onPlayerTick(TickEvent.PlayerTickEvent event){
+            if (!event.phase.equals(TickEvent.Phase.END)) return;
+            Player player = event.player;
+            if (player instanceof ServerPlayer serverPlayer){
+                if (!serverPlayer.isUsingItem() || !serverPlayer.getUseItem().is(SDTags.ItemTags.SKILLETS)){
+                    if (serverPlayer.getMainHandItem().getItem() instanceof SDSkilletItem sdSkilletItem){
+                        sdSkilletItem.returnFood(serverPlayer.getMainHandItem(), player);
+                    }
+                }
+            }
+        }
+
         public static void playSkilletAttackSound(LivingDamageEvent event) {
             DamageSource damageSource = event.getSource();
             Entity attacker = damageSource.getDirectEntity();
@@ -107,6 +123,18 @@ public class SDSkilletItem extends SkilletItem {
                         livingEntity.getCommandSenderWorld().playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), ModSounds.ITEM_SKILLET_ATTACK_STRONG.get(), SoundSource.PLAYERS, 1.0F, pitch);
                     }
                 }
+            }
+        }
+    }
+
+    void returnFood(ItemStack stack, LivingEntity entity) {
+        if (entity instanceof Player player) {
+            CompoundTag tag = stack.getOrCreateTag();
+            if (tag.contains("Cooking")) {
+                ItemStack cookingStack = ItemStack.of(tag.getCompound("Cooking"));
+                player.getInventory().placeItemBackInInventory(cookingStack);
+                tag.remove("Cooking");
+                tag.remove("CookTimeHandheld");
             }
         }
     }

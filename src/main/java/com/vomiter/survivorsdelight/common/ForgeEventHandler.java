@@ -23,6 +23,7 @@ public class ForgeEventHandler {
         final IEventBus bus = MinecraftForge.EVENT_BUS;
         bus.addListener(ForgeEventHandler::onFireStart);
         bus.addListener(SDSkilletItem.SDSkilletEvents::playSkilletAttackSound);
+        bus.addListener(SDSkilletItem.SDSkilletEvents::onPlayerTick);
 
         bus.addListener(RichSoilDelayedCheck::onPlayerRightClick_RichSoilFarmGating);
         bus.addListener(RichSoilDelayedCheck::onServerTick);

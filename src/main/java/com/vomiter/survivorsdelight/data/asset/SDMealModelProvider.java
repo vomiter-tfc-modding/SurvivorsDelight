@@ -1,0 +1,97 @@
+package com.vomiter.survivorsdelight.data.asset;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.vomiter.survivorsdelight.SurvivorsDelight;
+import com.vomiter.survivorsdelight.data.tags.SDTags;
+import net.dries007.tfc.common.items.Food;
+import net.dries007.tfc.common.capabilities.food.Nutrient;
+import net.dries007.tfc.common.items.TFCItems;
+import net.minecraft.data.CachedOutput;
+import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
+import vectorwing.farmersdelight.common.registry.ModItems;
+import vectorwing.farmersdelight.common.tag.CommonTags;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+/** Built-in client rules use the same resource-pack format as user-defined models. */
+public final class SDMealModelProvider implements DataProvider {
+    private final PackOutput output;
+
+    public SDMealModelProvider(PackOutput output) { this.output = output; }
+
+    @Override
+    public CompletableFuture<?> run(CachedOutput cache) {
+        List<CompletableFuture<?>> writes = new ArrayList<>();
+        JsonElement sandwich = Ingredient.of(TFCItems.FOOD.get(Food.WHEAT_BREAD_SANDWICH).get()).toJson();
+        JsonElement cabbage = Ingredient.of(TFCItems.FOOD.get(Food.CABBAGE).get(), ModItems.CABBAGE_LEAF.get()).toJson();
+        JsonElement tomato = Ingredient.of(TFCItems.FOOD.get(Food.TOMATO).get()).toJson();
+
+        save(cache, writes, "egg_sandwich", rule(sandwich, 30, ModItems.EGG_SANDWICH.getId(),
+                requirement(Ingredient.of(CommonTags.Items.EGGS).toJson(), 2, null)));
+        save(cache, writes, "chicken_sandwich", rule(sandwich, 20, ModItems.CHICKEN_SANDWICH.getId(),
+                requirement(Ingredient.of(TFCItems.FOOD.get(Food.COOKED_CHICKEN).get(), ModItems.COOKED_CHICKEN_CUTS.get()).toJson(), 1, 1),
+                requirement(cabbage, 1, 1), requirement(Ingredient.of(TFCItems.FOOD.get(Food.CARROT).get()).toJson(), 1, 1)));
+        save(cache, writes, "bacon_sandwich", rule(sandwich, 10, ModItems.BACON_SANDWICH.getId(),
+                requirement(Ingredient.of(ModItems.COOKED_BACON.get()).toJson(), 1, 1),
+                requirement(tomato, 1, 1), requirement(cabbage, 1, 1)));
+
+        save(cache, writes, "mixed_salad", rule(Ingredient.of(TFCItems.SALADS.get(Nutrient.VEGETABLES).get()).toJson(),
+                0, ModItems.MIXED_SALAD.getId(), requirement(cabbage, 1, null), requirement(tomato, 1, null),
+                requirement(Ingredient.of(TFCItems.FOOD.get(Food.BEET).get()).toJson(), 1, null)));
+        save(cache, writes, "fruit_salad", rule(Ingredient.of(TFCItems.SALADS.get(Nutrient.FRUIT).get()).toJson(),
+                0, ModItems.FRUIT_SALAD.getId(), requirement(Ingredient.of(SDTags.ItemTags.APPLE_FOR_CIDER).toJson(), 1, null),
+                requirement(Ingredient.of(TFCItems.FOOD.get(Food.MELON_SLICE).get()).toJson(), 1, null),
+                requirement(Ingredient.of(SDTags.ItemTags.FRUIT_FOR_CHEESECAKE).toJson(), 1, null),
+                requirement(Ingredient.of(TFCItems.FOOD.get(Food.PUMPKIN_CHUNKS).get()).toJson(), 1, null)));
+
+        JsonArray soups = new JsonArray();
+        for (Nutrient nutrient : Nutrient.VALUES) soups.add(Ingredient.of(TFCItems.SOUPS.get(nutrient).get()).toJson());
+        /*
+        save(cache, writes, "pumpkin_soup", rule(soups, 0, ModItems.PUMPKIN_SOUP.getId(),
+                requirement(Ingredient.of(TFCItems.FOOD.get(Food.PUMPKIN_CHUNKS).get()).toJson(), 1, null)));
+         */
+
+        JsonObject fallback = new JsonObject();
+        fallback.addProperty("parent", "minecraft:item/generated");
+        JsonObject textures = new JsonObject();
+        textures.addProperty("layer0", "tfc:item/food/wheat_bread_sandwich");
+        fallback.add("textures", textures);
+        writes.add(DataProvider.saveStable(cache, fallback, output.getOutputFolder().resolve(
+                "assets/tfc/models/item/food/wheat_bread_sandwich.json")));
+        return CompletableFuture.allOf(writes.toArray(CompletableFuture[]::new));
+    }
+
+    private void save(CachedOutput cache, List<CompletableFuture<?>> writes, String name, JsonObject rule) {
+        writes.add(DataProvider.saveStable(cache, rule, output.getOutputFolder().resolve(
+                "assets/" + SurvivorsDelight.MODID + "/meal_models/" + name + ".json")));
+    }
+
+    private static JsonObject rule(JsonElement meal, int priority, ResourceLocation item, JsonObject... requirements) {
+        JsonObject json = new JsonObject();
+        json.add("meal", meal.deepCopy());
+        json.addProperty("priority", priority);
+        json.addProperty("model", item.getNamespace() + ":item/" + item.getPath());
+        JsonArray ingredients = new JsonArray();
+        for (JsonObject requirement : requirements) ingredients.add(requirement);
+        json.add("ingredients", ingredients);
+        return json;
+    }
+
+    private static JsonObject requirement(JsonElement ingredient, int min, Integer max) {
+        JsonObject json = new JsonObject();
+        json.add("ingredient", ingredient.deepCopy());
+        json.addProperty("min", min);
+        if (max != null) json.addProperty("max", max);
+        return json;
+    }
+
+    @Override
+    public String getName() { return "Survivor's Delight ingredient-based meal models"; }
+}

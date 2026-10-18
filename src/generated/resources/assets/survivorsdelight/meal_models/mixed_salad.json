@@ -1,0 +1,32 @@
+{
+  "ingredients": [
+    {
+      "ingredient": [
+        {
+          "item": "tfc:food/cabbage"
+        },
+        {
+          "item": "farmersdelight:cabbage_leaf"
+        }
+      ],
+      "min": 1
+    },
+    {
+      "ingredient": {
+        "item": "tfc:food/tomato"
+      },
+      "min": 1
+    },
+    {
+      "ingredient": {
+        "item": "tfc:food/beet"
+      },
+      "min": 1
+    }
+  ],
+  "meal": {
+    "item": "tfc:food/vegetables_salad"
+  },
+  "model": "farmersdelight:item/mixed_salad",
+  "priority": 0
+}

@@ -25,6 +25,7 @@ public final class SDPatchouliEntryProvider implements DataProvider {
 
 
     public SDPatchouliEntryProvider(PackOutput output) { this.output = output; }
+    public SDPatchouliEntryProvider(PackOutput output, String lang) { this(output); setLang(lang); }
     public void entry(EntryJson entry) { entries.add(entry); }
 
     @Override
@@ -45,5 +46,5 @@ public final class SDPatchouliEntryProvider implements DataProvider {
     }
 
     @Override
-    public @NotNull String getName() { return "Patchouli Book: entries"; }
+    public @NotNull String getName() { return "Patchouli Book: entries" + ("en_us".equals(LANG) ? "" : " (" + LANG + ")"); }
 }

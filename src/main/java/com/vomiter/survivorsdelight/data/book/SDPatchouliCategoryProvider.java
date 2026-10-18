@@ -23,6 +23,7 @@ public final class SDPatchouliCategoryProvider implements DataProvider {
     }
 
     public SDPatchouliCategoryProvider(PackOutput output) { this.output = output; }
+    public SDPatchouliCategoryProvider(PackOutput output, String lang) { this(output); setLang(lang); }
     public void category(CategoryJson category) { categories.add(category); }
 
     @Override
@@ -43,6 +44,6 @@ public final class SDPatchouliCategoryProvider implements DataProvider {
     }
 
     @Override
-    public String getName() { return "Patchouli Book: categories"; }
+    public String getName() { return "Patchouli Book: categories" + ("en_us".equals(LANG) ? "" : " (" + LANG + ")"); }
 }
 

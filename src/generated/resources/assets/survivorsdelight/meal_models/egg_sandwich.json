@@ -1,0 +1,15 @@
+{
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "c:eggs"
+      },
+      "min": 2
+    }
+  ],
+  "meal": {
+    "item": "tfc:food/wheat_bread_sandwich"
+  },
+  "model": "farmersdelight:item/egg_sandwich",
+  "priority": 30
+}

@@ -4,8 +4,6 @@ import com.mojang.logging.LogUtils;
 import com.vomiter.survivorsdelight.adapter.cooking_pot.dynamic.CookingPotDynamicRules;
 import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle.SDCookingPotCapabilities;
 import com.vomiter.survivorsdelight.client.ClientForgeEventHandler;
-import com.vomiter.survivorsdelight.client.SaladPredicates;
-import com.vomiter.survivorsdelight.client.SandwichPredicates;
 import com.vomiter.survivorsdelight.common.ForgeEventHandler;
 import com.vomiter.survivorsdelight.common.container.SDCabinetBlockEntity;
 import com.vomiter.survivorsdelight.common.device.skillet.itemcooking.SkilletCookingCap;
@@ -25,7 +23,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
@@ -71,14 +68,8 @@ public class SurvivorsDelight {
         modBus.addListener(SDCookingPotCapabilities::onRegisterCaps);
         modBus.addListener(SDCabinetBlockEntity::onRegisterCapabilities);
         modBus.addListener(CookingPotDynamicRules::onCommonSetup);
+        modBus.addListener(CookingPotDynamicRules::onLoadComplete);
 
-    }
-
-    private void onClientSetup(final FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            SandwichPredicates.addPredicate();
-            SaladPredicates.addPredicate();
-        });
     }
 
     private void init(IEventBus modBus) {
@@ -91,7 +82,6 @@ public class SurvivorsDelight {
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientForgeEventHandler.init();
             modBus.addListener(ClientForgeEventHandler::registerMenuScreens);
-            modBus.addListener(this::onClientSetup);
             modBus.addListener(ClientForgeEventHandler::registerClientExtensions);
             modBus.addListener(ClientForgeEventHandler::onClientSetup);
         }

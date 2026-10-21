@@ -1,6 +1,7 @@
 package com.vomiter.survivorsdelight.adapter.cooking_pot.dynamic;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
+import com.vomiter.survivorsdelight.api.cooking.DynamicCookingRules;
 import com.vomiter.survivorsdelight.registry.recipe.SDCookingPotRecipe;
 import com.vomiter.survivorsdelight.util.FoodDataBuilder;
 import net.dries007.tfc.common.component.TFCComponents;
@@ -9,6 +10,7 @@ import net.dries007.tfc.common.component.food.Nutrient;
 import net.dries007.tfc.common.component.item.ItemListComponent;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -32,9 +34,6 @@ public class CookingPotCookingHandler {
         var resultFood = FoodCapability.get(resultItem);
         if (resultFood == null) return resultItem;
         if (!(recipe instanceof SDCookingPotRecipe cookingPotRecipe)) return resultItem;
-        if (!CookingPotDynamicRules.bootstrapped){
-            CookingPotDynamicRules.bootStrap();
-        }
         List<ItemStack> inputItems = new ArrayList<>();
         for (int i = 0; i < slotNumber; i++) {
             inputItems.add(inventory.getStackInSlot(i).copyWithCount(1));
@@ -43,29 +42,13 @@ public class CookingPotCookingHandler {
         if (!inputFluid.isEmpty()){
             inputFluid.setAmount(cookingPotRecipe.getFluidAmountMb());
         }
-        var foodBuilder = FoodDataBuilder.from(resultFood.getData());
-        CookingPotDynamicRules.RULES.forEach(ruleHolder -> {
-            inputItems.forEach(inputItem -> {
-                var context = new DynamicFoodContext<>(
-                        inputItems,
-                        inputFluid,
-                        inputItem,
-                        recipe,
-                        DynamicFoodContext.Phase.INDIVIDUAL,
-                        level
-                );
-                ruleHolder.modifier().modify(foodBuilder, context);
-            });
-            var context = new DynamicFoodContext<>(
-                    inputItems,
-                    inputFluid,
-                    resultItem,
-                    recipe,
-                    DynamicFoodContext.Phase.TOTAL,
-                    level
-            );
-            ruleHolder.modifier().modify(foodBuilder, context);
-        });
+        var recipeId = level.getRecipeManager().getRecipes().stream()
+                .filter(holder -> holder.value() == recipe)
+                .map(RecipeHolder::id).findFirst().orElse(null);
+        var context = new DynamicFoodContext<>(
+                inputItems, inputFluid, resultItem, recipe, recipeId,
+                DynamicFoodContext.Phase.TOTAL, level);
+        var foodBuilder = DynamicCookingRules.apply(FoodDataBuilder.from(resultFood.getData()), context);
         SurvivorsDelight.LOGGER.info("Cached Nutrients = {}", foodBuilder.nutrients());
 
         var inputFood = new ArrayList<>(inputItems.stream().filter(item -> FoodCapability.get(item) != null).toList());

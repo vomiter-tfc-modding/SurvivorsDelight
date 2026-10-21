@@ -1,0 +1,40 @@
+{
+  "ingredients": [
+    {
+      "ingredient": [
+        {
+          "item": "tfc:food/cooked_chicken"
+        },
+        {
+          "item": "farmersdelight:cooked_chicken_cuts"
+        }
+      ],
+      "max": 1,
+      "min": 1
+    },
+    {
+      "ingredient": [
+        {
+          "item": "tfc:food/cabbage"
+        },
+        {
+          "item": "farmersdelight:cabbage_leaf"
+        }
+      ],
+      "max": 1,
+      "min": 1
+    },
+    {
+      "ingredient": {
+        "item": "tfc:food/carrot"
+      },
+      "max": 1,
+      "min": 1
+    }
+  ],
+  "meal": {
+    "item": "tfc:food/wheat_bread_sandwich"
+  },
+  "model": "farmersdelight:item/chicken_sandwich",
+  "priority": 20
+}

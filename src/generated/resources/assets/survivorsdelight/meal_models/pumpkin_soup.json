@@ -1,0 +1,29 @@
+{
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "tfc:food/pumpkin_chunks"
+      },
+      "min": 3
+    }
+  ],
+  "meal": [
+    {
+      "item": "tfc:food/grain_soup"
+    },
+    {
+      "item": "tfc:food/fruit_soup"
+    },
+    {
+      "item": "tfc:food/vegetables_soup"
+    },
+    {
+      "item": "tfc:food/protein_soup"
+    },
+    {
+      "item": "tfc:food/dairy_soup"
+    }
+  ],
+  "model": "farmersdelight:item/pumpkin_soup",
+  "priority": 0
+}

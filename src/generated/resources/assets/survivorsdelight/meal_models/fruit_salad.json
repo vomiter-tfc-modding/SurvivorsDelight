@@ -1,0 +1,33 @@
+{
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "survivorsdelight:apple_for_cider"
+      },
+      "min": 1
+    },
+    {
+      "ingredient": {
+        "item": "tfc:food/melon_slice"
+      },
+      "min": 1
+    },
+    {
+      "ingredient": {
+        "tag": "survivorsdelight:fruit_for_cheesecake"
+      },
+      "min": 1
+    },
+    {
+      "ingredient": {
+        "item": "tfc:food/pumpkin_chunks"
+      },
+      "min": 1
+    }
+  ],
+  "meal": {
+    "item": "tfc:food/fruit_salad"
+  },
+  "model": "farmersdelight:item/fruit_salad",
+  "priority": 0
+}

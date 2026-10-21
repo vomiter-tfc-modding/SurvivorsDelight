@@ -1,6 +1,7 @@
 package com.vomiter.survivorsdelight.adapter.cooking_pot.dynamic;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
+import com.vomiter.survivorsdelight.api.cooking.DynamicCookingRules;
 import com.vomiter.survivorsdelight.data.tags.SDTags;
 import com.vomiter.survivorsdelight.util.FoodDataBuilder;
 import com.vomiter.survivorsdelight.util.SDUtils;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import vectorwing.farmersdelight.common.crafting.CookingPotRecipe;
 import vectorwing.farmersdelight.common.registry.ModItems;
@@ -38,32 +40,16 @@ public class CookingPotDynamicRules {
     }
 
     public record RuleHolder(int priority, ResourceLocation id, PotFoodModifier modifier){}
-    static class RuleSorter implements Comparator<RuleHolder>{
-        @Override
-        public int compare(RuleHolder o1, RuleHolder o2) {
-            if (o1.priority < o2.priority) return 1;
-            else if (o1.priority > o2.priority) {
-                return -1;
-            }
-            else return 0;
-        }
+    /** @deprecated Use the public DynamicCookingRules API. */
+    @Deprecated(forRemoval = false)
+    public static void register(RuleHolder rule) {
+        Objects.requireNonNull(rule, "Rule");
+        DynamicCookingRules.register(rule.id(), rule.priority(),
+                Objects.requireNonNull(rule.modifier(), "Rule modifier")::modify);
     }
 
-    static final List<RuleHolder> RULES = new ArrayList<>();
-    static boolean bootstrapped = false;
-    static void bootStrap(){
-        if (bootstrapped) return;
-        RULES.sort(new RuleSorter());
-        bootstrapped = true;
-    }
-
-    /**
-     * Rules for Addition should have priority of 2000;
-     * Rules for multiplying should have priority of 1000;
-     * Rules for input fluid should have priority of 0;
-     */
-    public static void register(RuleHolder rule){
-        RULES.add(rule);
+    public static void onLoadComplete(FMLLoadCompleteEvent event) {
+        event.enqueueWork(DynamicCookingRules::freeze);
     }
 
     public static FoodData getBuiltInFoodData(Food food){

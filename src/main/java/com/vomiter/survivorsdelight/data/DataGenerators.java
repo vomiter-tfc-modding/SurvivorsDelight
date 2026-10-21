@@ -3,6 +3,7 @@ package com.vomiter.survivorsdelight.data;
 import com.vomiter.survivorsdelight.SurvivorsDelight;
 import com.vomiter.survivorsdelight.data.asset.SDCabinetBlockStateProvider;
 import com.vomiter.survivorsdelight.data.asset.SDLangProvider;
+import com.vomiter.survivorsdelight.data.asset.SDMealModelProvider;
 import com.vomiter.survivorsdelight.data.asset.SDSkilletBlockStateProvider;
 import com.vomiter.survivorsdelight.data.book.content.SDBookEN;
 import com.vomiter.survivorsdelight.data.heat.SDItemHeatProvider;
@@ -42,6 +43,7 @@ public class DataGenerators
         generator.addProvider(event.includeClient(), new SDSkilletBlockStateProvider(output, helper));
         generator.addProvider(event.includeClient(), new SDCabinetBlockStateProvider(output, helper));
 
+        generator.addProvider(event.includeClient(), new SDMealModelProvider(output));
         generator.addProvider(event.includeClient(), new SDLangProvider(output, "en_us"));
         generator.addProvider(event.includeClient(), new SDLangProvider(output, "zh_tw"));
 

@@ -6,6 +6,7 @@ import com.vomiter.survivorsdelight.registry.SDContainerTypes;
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
@@ -106,8 +107,15 @@ public class SDCabinetBlockEntity extends RandomizableContainerBlockEntity imple
     private boolean TREATED;
     public boolean isTreated() { return TREATED; }
     public void setTreated(boolean treated) {
+        if (this.TREATED == treated) return;
         this.TREATED = treated;
+        for (ItemStack item : this.items) {
+            setStored(item);
+        }
         setChanged();
+        if (level != null && !level.isClientSide) {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
     }
 
     @Override
@@ -350,4 +358,14 @@ public class SDCabinetBlockEntity extends RandomizableContainerBlockEntity imple
         }
 
     }
+    @Override
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registries) {
+        return saveWithoutMetadata(registries);
+    }
+
+    @Override
+    public @NotNull ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
 }

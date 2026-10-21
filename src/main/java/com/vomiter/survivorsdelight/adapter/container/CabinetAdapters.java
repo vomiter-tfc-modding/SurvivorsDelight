@@ -44,14 +44,16 @@ public class CabinetAdapters {
             if (itemHandler != null) {
                 boolean cantTreat = itemHandler.getFluidInTank(0).getFluid().isSame(TFCFluids.SIMPLE_FLUIDS.get(SimpleFluid.TALLOW).getSource());
                 if(cantTreat) {
-                    itemHandler.drain(100, IFluidHandler.FluidAction.EXECUTE);
+                    if (!level.isClientSide) itemHandler.drain(100, IFluidHandler.FluidAction.EXECUTE);
                     return true;
                 }
             }
         }
         else if(mainHandItem.is(SDTags.ItemTags.WOOD_PRESERVATIVES)){
-            if(mainHandItem.isDamageableItem()) mainHandItem.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
-            else mainHandItem.shrink(1);
+            if (!level.isClientSide) {
+                if (mainHandItem.isDamageableItem()) mainHandItem.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                else mainHandItem.shrink(1);
+            }
             return true;
         }
         return false;

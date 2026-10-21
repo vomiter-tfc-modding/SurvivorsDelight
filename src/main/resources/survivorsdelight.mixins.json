@@ -44,6 +44,7 @@
     "food.effect.LivingEntity_AddEatEffectMixin",
     "food.effect.MelonJuiceItemMixin",
     "food.effect.NourishmentEffect_Mixin",
+    "food.effect.PlayerInfo_FoodUseMixin",
     "food.effect.TFCComponents_FoodEffectMixin",
     "food.mushroom.MushroomBlock_PreventPlace",
     "food.mushroom.MushroomItem_PreventRottenPlace",

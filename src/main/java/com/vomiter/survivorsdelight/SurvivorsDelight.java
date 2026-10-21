@@ -6,7 +6,6 @@ import com.vomiter.survivorsdelight.adapter.cooking_pot.fluid_handle.SDCookingPo
 import com.vomiter.survivorsdelight.client.ClientForgeEventHandler;
 import com.vomiter.survivorsdelight.common.ForgeEventHandler;
 import com.vomiter.survivorsdelight.common.container.SDCabinetBlockEntity;
-import com.vomiter.survivorsdelight.common.device.skillet.itemcooking.SkilletCookingCap;
 import com.vomiter.survivorsdelight.common.farming.RichSoilFarmlandBlockEntitySetup;
 import com.vomiter.survivorsdelight.common.food.FoodContainerExpansion;
 import com.vomiter.survivorsdelight.data.food.SDFoodAndRecipeGenerator;
@@ -64,7 +63,6 @@ public class SurvivorsDelight {
         modBus.addListener(this::onCommonSetup);
         modBus.addListener(RichSoilFarmlandBlockEntitySetup::onCommonSetup);
         modBus.addListener(SDSkilletBlocks::onCommonSetup);
-        modBus.addListener(SkilletCookingCap::onRegisterCaps);
         modBus.addListener(SDCookingPotCapabilities::onRegisterCaps);
         modBus.addListener(SDCabinetBlockEntity::onRegisterCapabilities);
         modBus.addListener(CookingPotDynamicRules::onCommonSetup);

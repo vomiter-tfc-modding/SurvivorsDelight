@@ -1,21 +1,18 @@
 package com.vomiter.survivorsdelight.common.device.skillet;
 
 import com.vomiter.survivorsdelight.SurvivorsDelight;
-import com.vomiter.survivorsdelight.common.device.skillet.itemcooking.SkilletCookingCap;
+import com.vomiter.survivorsdelight.common.device.skillet.itemcooking.ISkilletItemCookingData;
 import com.vomiter.survivorsdelight.mixin.ItemAccessor;
 import com.vomiter.survivorsdelight.registry.ItemPropertyInterface;
 import com.vomiter.survivorsdelight.registry.skillet.SDSkilletItems;
 import com.vomiter.survivorsdelight.util.SDUtils;
-import net.dries007.tfc.common.component.heat.HeatCapability;
-import net.dries007.tfc.common.component.heat.IHeat;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -41,8 +38,10 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.item.SkilletItem;
+import vectorwing.farmersdelight.common.item.component.ItemStackWrapper;
 import vectorwing.farmersdelight.common.registry.ModDataComponents;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 
@@ -121,6 +120,20 @@ public class SDSkilletItem extends SkilletItem {
             modid = SurvivorsDelight.MODID
     )
     public static class SDSkilletEvents {
+
+        @SubscribeEvent
+        public static void onPlayerTick(PlayerTickEvent.Post event){
+            Player player = event.getEntity();
+            if (player instanceof ServerPlayer serverPlayer){
+                if (!serverPlayer.isUsingItem() || !serverPlayer.getUseItem().equals(serverPlayer.getMainHandItem())){
+                    if (serverPlayer.getMainHandItem().getItem() instanceof SDSkilletItem sdSkilletItem){
+                        sdSkilletItem.returnFood(serverPlayer.getMainHandItem(), player);
+                    }
+                }
+            }
+        }
+
+
         @SubscribeEvent
         public static void playSkilletAttackSound(LivingDamageEvent.Post event) {
             DamageSource damageSource = event.getEntity().getLastDamageSource();
@@ -149,22 +162,27 @@ public class SDSkilletItem extends SkilletItem {
         return super.isBarVisible(stack) || stack.has(ModDataComponents.SKILLET_INGREDIENT);
     }
 
+    void returnFood(ItemStack stack, LivingEntity entity) {
+        if (entity instanceof Player player) {
+            ItemStack cookingStack = stack.getOrDefault(ModDataComponents.SKILLET_INGREDIENT, ItemStackWrapper.EMPTY).getStack();
+            if (!cookingStack.isEmpty()) {
+                player.getInventory().placeItemBackInInventory(cookingStack);
+                stack.remove(ModDataComponents.SKILLET_INGREDIENT);
+            }
+            if ((Object)stack instanceof ISkilletItemCookingData data){
+                data.clear();
+            }
+        }
+    }
+
+
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public int getBarWidth(@NotNull ItemStack stack) {
-        if(stack.has(ModDataComponents.SKILLET_INGREDIENT)){
-            LocalPlayer player = Minecraft.getInstance().player;
-            if(player != null) {
-                var data = SkilletCookingCap.get(player);
-                ItemStack cooking = data.getCooking();
-                if(cooking != null && !cooking.isEmpty()){
-                    IHeat heat = HeatCapability.get(cooking);
-                    if(heat != null){
-                        return Math.round(heat.getTemperature() / data.getTargetTemperature() * 13);
-                    }
-                }
-            }
+        if (stack.has(ModDataComponents.SKILLET_INGREDIENT)
+                && (Object) stack instanceof ISkilletItemCookingData data) {
+            return data.getCookingBarWidth();
         }
         return super.getBarWidth(stack);
     }
@@ -172,20 +190,6 @@ public class SDSkilletItem extends SkilletItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public int getBarColor(ItemStack stack) {
-        if(stack.has(ModDataComponents.SKILLET_INGREDIENT)){
-            LocalPlayer player = Minecraft.getInstance().player;
-            if(player != null) {
-                var data = SkilletCookingCap.get(player);
-                ItemStack cooking = data.getCooking();
-                if(cooking != null && !cooking.isEmpty()){
-                    IHeat heat = HeatCapability.get(cooking);
-                    if(heat != null){
-                        return 16747343;
-                    }
-                }
-            }
-        }
-        return super.getBarColor(stack);
+        return stack.has(ModDataComponents.SKILLET_INGREDIENT) ? 16747343 : super.getBarColor(stack);
     }
-
 }

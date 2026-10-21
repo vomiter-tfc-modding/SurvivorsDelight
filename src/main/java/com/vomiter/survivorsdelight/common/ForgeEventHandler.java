@@ -1,7 +1,6 @@
 package com.vomiter.survivorsdelight.common;
 
 import com.vomiter.survivorsdelight.common.device.skillet.SDSkilletItem;
-import com.vomiter.survivorsdelight.common.device.skillet.itemcooking.SkilletCookingCap;
 import com.vomiter.survivorsdelight.common.food.FoodUseFinishEvent;
 import net.dries007.tfc.util.events.StartFireEvent;
 import net.minecraft.core.BlockPos;
@@ -21,7 +20,6 @@ public class ForgeEventHandler {
 
         final IEventBus bus = NeoForge.EVENT_BUS;
         bus.addListener(ForgeEventHandler::onFireStart);
-        bus.addListener(SkilletCookingCap::onClone);
         bus.addListener(SDSkilletItem.SDSkilletEvents::playSkilletAttackSound);
         bus.addListener(RichSoilDelayedCheck::onPlayerRightClick_RichSoilFarmGating);
         bus.addListener(RichSoilDelayedCheck::onServerTick);

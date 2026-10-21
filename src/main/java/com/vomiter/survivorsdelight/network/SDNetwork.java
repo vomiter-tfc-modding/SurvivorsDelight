@@ -33,6 +33,7 @@ public final class SDNetwork {
 
         // ---- 依序註冊封包 ----
         registrar.playToServer(SwingSkilletC2S.TYPE, SwingSkilletC2S.STREAM_CODEC, SwingSkilletC2S::handle);
+        registrar.playToClient(SkilletProgressionBarS2CPayload.TYPE, SkilletProgressionBarS2CPayload.STREAM_CODEC, SkilletProgressionBarS2CPayload::handle);
 
         registrar.playToClient(PotFluidSyncS2CPayload.TYPE, PotFluidSyncS2CPayload.STREAM_CODEC, PotFluidSyncS2CPayload::handle);
         registrar.playToServer(OpenPotFluidMenuC2SPayload.TYPE, OpenPotFluidMenuC2SPayload.STREAM_CODEC, OpenPotFluidMenuC2SPayload::handle);

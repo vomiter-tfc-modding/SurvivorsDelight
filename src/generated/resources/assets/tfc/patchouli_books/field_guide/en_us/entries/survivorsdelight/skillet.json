@@ -23,14 +23,19 @@
       "enable_visualize": false,
       "multiblock": {
         "mapping": {
-          "X": "#survivorsdelight:skillets"
+          "0": "farmersdelight:stove",
+          "a": "minecraft:air",
+          "s": "#survivorsdelight:skillets"
         },
         "pattern": [
           [
-            "X"
+            "s"
           ],
           [
             "0"
+          ],
+          [
+            "a"
           ]
         ]
       },

@@ -15,19 +15,24 @@
       "enable_visualize": false,
       "multiblock": {
         "mapping": {
-          "X": "farmersdelight:cooking_pot"
+          "0": "farmersdelight:stove[lit=true]",
+          "P": "farmersdelight:cooking_pot",
+          "a": "minecraft:air"
         },
         "pattern": [
           [
-            "X"
+            "P"
           ],
           [
             "0"
+          ],
+          [
+            "a"
           ]
         ]
       },
       "name": "Cooking Pot",
-      "text": ""
+      "text": "Place a cooking pot above a lit stove to heat it."
     },
     {
       "type": "patchouli:text",

@@ -15,6 +15,11 @@
       "type": "patchouli:spotlight",
       "item": "farmersdelight:ham",
       "text": "A ham item."
+    },
+    {
+      "type": "tfc:heat_recipe",
+      "recipe": "survivorsdelight:heating/farmersdelight/ham",
+      "text": "Heat a fresh ham to make smoked ham."
     }
   ],
   "read_by_default": true,

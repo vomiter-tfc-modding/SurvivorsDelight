@@ -7,6 +7,7 @@ import com.vomiter.survivorsdelight.data.book.SDPatchouliEntryProvider;
 import com.vomiter.survivorsdelight.data.book.TFCGuide;
 import com.vomiter.survivorsdelight.data.book.builder.CategoryJson;
 import com.vomiter.survivorsdelight.data.book.builder.EntryJson;
+import com.vomiter.survivorsdelight.data.book.builder.MultiblockJson;
 import com.vomiter.survivorsdelight.data.book.builder.TextBuilder;
 import com.vomiter.survivorsdelight.data.tags.SDTags;
 import com.vomiter.survivorsdelight.registry.SDItems;
@@ -17,6 +18,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -89,7 +93,10 @@ public final class SDBookEN {
                         .addTextPage(text1_1.toString())
                         .addTextPage(text1_2.toString())
                         .addTextPage(text1_3.toString())
-                        .addSingleBlockPage("Skillet variants", "#survivorsdelight:skillets")
+                        .addMultiblockPage("Skillet variants", MultiblockJson.builder()
+                                .layer("s").layer("0").layer("a")
+                                .map('s', SDTags.BlockTags.SKILLETS).map('0', ModBlocks.STOVE.get()).map('a', Blocks.AIR)
+                                .build(), "")
 
                     .addTextPage("Make A Skillet", "make_a_skillet", text1_4.toString())
                         .addAnvilRecipe(SDUtils.RLUtils.build(SurvivorsDelight.MODID, "anvil/skillet_head/steel"), "A metal double sheet is forged into a skillet head.")
@@ -167,7 +174,11 @@ public final class SDBookEN {
                         .setName("Cooking Pot")
                         .setIcon("farmersdelight:cooking_pot")
                         .addTextPage(text4_1.toString())
-                        .addSingleBlockPage("Cooking Pot", "farmersdelight:cooking_pot")
+                        .addMultiblockPage("Cooking Pot", MultiblockJson.builder()
+                                .layer("P").layer("0").layer("a")
+                                .map('P', ModBlocks.COOKING_POT.get())
+                                .map('0', "farmersdelight:stove[lit=true]").map('a', Blocks.AIR)
+                                .build(), "Place a cooking pot above a lit stove to heat it.")
                         .addTextPage(text4_2.toString())
                         .addTextPage(text4_3.toString())
                         .extraRecipeMapping(ModItems.COOKING_POT, 0)
@@ -202,7 +213,7 @@ public final class SDBookEN {
         // Entry: 6 Rich Soil
         var text6_1 = TextBuilder.of("Rich Soil is a special type of soil that accelerates natural growth.")
                 .appendWithSpace("It shortens the preparation time for saplings to grow.")
-                .appendWithSpace("If the block above Rich Soil is air, it has a chance to randomly foods brown or red mushrooms.")
+                .appendWithSpace("If the block above Rich Soil is air, it has a chance to randomly generate brown or red mushrooms.")
                 .appendWithSpace("These mushrooms can later grow into full mushroom colonies over time.");
 
 
@@ -254,6 +265,8 @@ public final class SDBookEN {
                         .setIcon(ModItems.SMOKED_HAM)
                         .addTextPage(text7_1.toString())
                         .addSpotlightPage(BuiltInRegistries.ITEM.getKey(ModItems.HAM.get()).toString(), "A ham item.")
+                        .addHeatingRecipe(SDUtils.RLUtils.build("heating/farmersdelight/ham"),
+                                "Heat a fresh ham to make smoked ham.")
                         .extraRecipeMapping(ModItems.HAM, 0)
                         .extraRecipeMapping(ModItems.SMOKED_HAM, 0)
                         .build()
@@ -275,7 +288,7 @@ public final class SDBookEN {
                         .setName("Pie And Feast")
                         .setIcon(ModItems.HONEY_GLAZED_HAM_BLOCK)
                         .addTextPage(text8_1.toString())
-                        .addSpotlightPage("tag:" + SDTags.ItemTags.FOOD_MODEL_COATING.location(), text8_2.toString())
+                        .addSpotlightPage(Ingredient.of(SDTags.ItemTags.FOOD_MODEL_COATING), text8_2.toString())
                         .extraRecipeMapping(SDTags.ItemTags.PIE_BLOCKS, 0)
                         .extraRecipeMapping(SDTags.ItemTags.FEAST_BLOCKS, 0)
                         .build());

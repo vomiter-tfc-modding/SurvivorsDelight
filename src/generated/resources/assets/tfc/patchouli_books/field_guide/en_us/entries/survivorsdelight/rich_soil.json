@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Rich Soil is a special type of soil that accelerates natural growth. It shortens the preparation time for saplings to grow. If the block above Rich Soil is air, it has a chance to randomly foods brown or red mushrooms. These mushrooms can later grow into full mushroom colonies over time."
+      "text": "Rich Soil is a special type of soil that accelerates natural growth. It shortens the preparation time for saplings to grow. If the block above Rich Soil is air, it has a chance to randomly generate brown or red mushrooms. These mushrooms can later grow into full mushroom colonies over time."
     },
     {
       "type": "patchouli:multiblock",

@@ -104,7 +104,7 @@ public class SDConfig {
 
             rebalancingFeast = builder
                     .comment("If set true, feast servings give nutrients divided by its total serving count. (Experimental)")
-                    .define("rebalancingFeast", false);
+                    .define("rebalancingFeast", true);
 
 
             builder.pop();

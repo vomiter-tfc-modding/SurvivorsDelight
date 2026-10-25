@@ -68,7 +68,7 @@ public class CookingPotCookingHandler {
                 Comparator.comparing(ItemStack::getCount)
                         .thenComparing(stack -> Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(stack.getItem())))
         );
-        resultItem.set(TFCComponents.INGREDIENTS.get(), ItemListComponent.of(inputItems));
+        resultItem.set(TFCComponents.INGREDIENTS.get(), ItemListComponent.of(inputFood));
         return resultItem;
     }
 }

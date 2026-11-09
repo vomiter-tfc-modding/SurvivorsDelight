@@ -18,7 +18,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -288,7 +287,7 @@ public final class SDBookEN {
                         .setName("Pie And Feast")
                         .setIcon(ModItems.HONEY_GLAZED_HAM_BLOCK)
                         .addTextPage(text8_1.toString())
-                        .addSpotlightPage(Ingredient.of(SDTags.ItemTags.FOOD_MODEL_COATING), text8_2.toString())
+                        .addSpotlightPage("tag:" + SDTags.ItemTags.FOOD_MODEL_COATING.location(), text8_2.toString())
                         .extraRecipeMapping(SDTags.ItemTags.PIE_BLOCKS, 0)
                         .extraRecipeMapping(SDTags.ItemTags.FEAST_BLOCKS, 0)
                         .build());

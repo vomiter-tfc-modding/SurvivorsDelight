@@ -40,7 +40,11 @@ public abstract class CuttingBoardRecipeSerializer_ISPMixin {
         }
         if (inputs.size() != 1) return; //理論上砧板只會有一格輸入
 
-        final Ingredient tool = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "tool"));
+        // FD 1.3+ writes "tool" as an array of alternatives; read it the way FD's own serializer does
+        final JsonElement toolJson = GsonHelper.isArrayNode(json, "tool")
+                ? GsonHelper.getAsJsonArray(json, "tool")
+                : GsonHelper.getAsJsonObject(json, "tool");
+        final Ingredient tool = Ingredient.fromJson(toolJson);
         if (tool.isEmpty()) return;
 
         final String sound = GsonHelper.getAsString(json, "sound", "");
